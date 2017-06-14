@@ -1,0 +1,11 @@
+.nav {
+  height: 100px;
+  width: 95%;
+  margin: 0 auto;
+  color: maroon;
+}
+
+#map {
+  height: 400px;
+  width: 100%;
+ }
