@@ -22,7 +22,7 @@ function callFood(){
     var food = $("#food-input").val().trim();
     console.log("this is food " + food);
     //api url
-    var queryURL = "https://data.sfgov.org/resource/6a9r-agq8.json?$q=" + food;
+    var queryURL = "https://data.sfgov.org/resource/bbb8-hzi6.json?$q=" + food;
 
     $.ajax({
       url: queryURL,
@@ -72,3 +72,23 @@ function addTrucks(){
     });
   }
 }
+
+  //populating our list view of food trucks
+//   for (i = 0; i <= 10; i++){
+
+//     var tr = $("<tr>");
+//     var truckName = $("<td>").text(foodTrucks[i].applicant);
+//     var cuisines = $("<td>");
+//     var hours = $("<td>");
+//     var truckLocation = $("<td>").text(foodTrucks[i].PermitLocation);
+//     tr.append(truckName).append(cuisines).append(hours).append(truckLocation);
+//     $(".data").prepend(tr);
+//   }
+// }
+  
+//match up the start and end time and date of the food truck with the current time and date
+  //make sure that the current time falls between the start and end time and the date of the food truck
+    //then it will be displayed 
+
+//moment js 
+
