@@ -7,6 +7,7 @@ var currentFoodTrucks = [];
 //google maps variable
 var map;
 
+//momentjs variables
 var hourFormat = "HH:mm:ss";
 var currentTime;
 var truckStartTime;
@@ -42,6 +43,7 @@ function callFood(){
 }).done(function(response){
     //asigns response to global foodTrucks array
     foodTrucks=response;
+    //getCurrentTrucks function filters foodTrucks array by current date and time
     getCurrentTrucks();
     //adds markers to google maps for each food truck
     addTrucks();
@@ -51,11 +53,20 @@ $("#food-input").val(' ');
 });
 } //callFood endtag
 
-$(document).on("click", "#food-search", callFood);
 
+//filters foodTrucks array by current date and time
+function getCurrentTrucks(){
+   time = moment();
+   for (var i = 0; i < foodTrucks.length; i++) {
+      truckStartTime = moment(foodTrucks[i].start24, hourFormat);
+      truckEndTime = moment(foodTrucks[i].end24, hourFormat);
+      if(time.isBetween(truckStartTime, truckEndTime) && time.format('dddd') === foodTrucks[i].dayofweekstr){
+         currentFoodTrucks.push(foodTrucks[i]);
+      }
+   }
+}
 
-//google maps 
-
+//creates a new google map 
 function initMap() {
  map = new google.maps.Map(document.getElementById('map'), {
   zoom: 2,
@@ -64,14 +75,13 @@ function initMap() {
 });
 }
 
-// Loop through the results array and place a marker for each
-// set of coordinates.
+//adds currentFoodTrucks to google maps and list view on document
 function addTrucks(){
-
   //logs our response 
   console.log(foodTrucks);
   //logs filtered response
   console.log(currentFoodTrucks);
+  // Loop through the results array and place a marker for each set of coordinates.
   for (var i = 0; i < currentFoodTrucks.length; i++){
     //sets latitude and longitude of each foodTruck to variable latlng
     var latLng = new google.maps.LatLng(currentFoodTrucks[i].latitude, currentFoodTrucks[i].longitude);
@@ -83,49 +93,22 @@ function addTrucks(){
       map: map
       });
    }
-}
 
-    //populating our list view of food trucks
-
-//     for (i = 0; i < foodTrucks.length; i++){
-
-//      if(moment().isAfter(foodTrucks[i].start24) && moment().isBefore(foodTrucks[i].end24)){
-//       console.log('hi')
-//       console.log(foodTrucks[i].start24);
-//       console.log(foodTrucks[i].end24)
-//       var tr = $("<tr>");
-//       var truckName = $("<td>").text(foodTrucks[i].applicant);
-//       var cuisines = $("<td>");
-//       var hours = $("<td>");
-//       var truckLocation = $("<td>").text(foodTrucks[i].PermitLocation);
-//       tr.append(truckName).append(cuisines).append(hours).append(truckLocation);
-//       $(".data").prepend(tr);
-//    }
-// }
-
-// }
-
-function getCurrentTrucks(){
- time = moment();
- for (var i = 0; i < foodTrucks.length; i++) {
-  truckStartTime = moment(foodTrucks[i].start24, hourFormat);
-  truckEndTime = moment(foodTrucks[i].end24, hourFormat);
-  if(time.isBetween(truckStartTime, truckEndTime) && time.format('dddd') === foodTrucks[i].dayofweekstr){
-      currentFoodTrucks.push(foodTrucks[i]);
-      }
+   // populating our list view of food trucks
+   for (i = 0; i < currentFoodTrucks.length; i++){
+         var tr = $("<tr>");
+         var truckName = $("<td>").text(currentFoodTrucks[i].applicant);
+         var cuisines = $("<td>");
+         var hours = $("<td>");
+         var truckLocation = $("<td>").text(currentFoodTrucks[i].PermitLocation);
+         tr.append(truckName).append(cuisines).append(hours).append(truckLocation);
+         $(".data").prepend(tr);
    }
 }
 
 
-  //if current time in military time from moment js
+//event listener
+$(document).on("click", "#food-search", callFood);
 
 
-
-//match up the start and end time and date of the food truck with the current time and date
-
-
-  //make sure that the current time falls between the start and end time and the date of the food truck
-    //then it will be displayed 
-
-//moment js 
-
+  
