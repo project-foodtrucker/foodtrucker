@@ -1,0 +1,99 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>foodTrucker</title>
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Ravi+Prakash" rel="stylesheet">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+  <!--CSS-->
+  <link href="https://fonts.googleapis.com/css?family=Alegreya:900" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+</head>
+
+<body>
+
+  <!--Header-->
+
+<nav class="nav navbar-default">
+  <h1>foodTruckr!</h1>
+</nav>
+
+<input class = "btn btn-primary" id="food-search" type="submit" value="Food Search!">
+<input class="searchInput" type="text" id="food-input" >
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
+
+
+
+<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+
+  <script src="assets/javascript/app.js"></script>
+
+  <div data-role="content">
+ 
+<div class="choice_list">
+ 
+<h1>Trucks Nearby</h1>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Trucks</th>
+      </tr>
+    </thead>
+    <tr>
+      <th>Truck Name</th>
+      <th>Cuisines</th>
+      <th>Hours</th>
+      <th>Location</th>
+      <th>Yelp Page</th>  
+    </tr>
+  </thead>
+  <tbody class = "data">
+  </tbody>
+</table>
+
+<div id="foodTruckList"></div>
+  
+ 
+<ul data-role="listview" data-inset="true" >
+ 
+<li><a href="restaurant.HTML" data-transition="slidedown"> <img src="restau01_mini.jpg"/> <h2> Le Mouffetard</h2> <p> 4 stars </p></a></li>
+ 
+<li><a href="restaurant.HTML" data-transition="slidedown"> <img src="restau02_mini.jpg "/> <h2> Chocolate bar </h2> <p> 4 stars </p> </a></li>
+ 
+<li><a href="restaurant.HTML" data-transition="slidedown"> <img src="restau03_mini.jpg "/> <h2> Restaurant Diona</h2> <p> 1 star </p> </a></li>
+ 
+<li><a href="restaurant.HTML" data-transition="slidedown"> <img src="restau04_mini.jpg "/> <h2> Tai Shan</h2> <p> 3 stars </p> </a></li>
+ 
+<li><a href="restaurant.HTML" data-transition="slidedown"> <img src=" restau05_mini.jpg"/> <h2> Arcade</h2> <p> 2 stars </p> </a></li>
+ 
+</ul>
+ 
+</div>
+ 
+</div>
+ 
+</div><!-- /page -->
+
+
+</body>
