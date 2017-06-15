@@ -1,3 +1,15 @@
-in our list view we want it to show the 10 closest results 
+------LISTVIEW------
 
-we want to be able to look at more results from our list view if we click on a button (show page 2, etc)
+sort results by?
+	rating then name
+
+possibly link to yelp api to get more information about food carts?
+	reviews
+	pictures
+	website
+
+when page is loaded, display food carts that are close to users location , then change if user searches
+
+assessors block addresses? maybe get address back from google maps for those ones
+
+yelp  api for more info?
