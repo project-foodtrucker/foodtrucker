@@ -117,7 +117,7 @@ function initMap() {
     center: new google.maps.LatLng(2.8,-187.3),
     mapTypeId: 'terrain'
   });
-}
+
 
 
 //adds currentFoodTrucks to google maps and list view on document
