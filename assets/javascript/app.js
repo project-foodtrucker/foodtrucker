@@ -1,7 +1,7 @@
-//stores our response from ajax call 
+//stores our response from ajax call
 var foodTrucks = [];
 
-//filtered response 
+//filtered response
 var currentFoodTrucks = [];
 
 //google maps variable
@@ -27,7 +27,7 @@ firebase.initializeApp(config);
 
 //searches for food trucks based on type of food
 function callFood(){
-    //gets input 
+    //gets input
     var food = $("#food-input").val().trim();
     console.log("this is food " + food);
     //api url
@@ -66,8 +66,51 @@ function getCurrentTrucks(){
    }
 }
 
-//creates a new google map 
+//creates a new google map
 function initMap() {
+
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: -34.397, lng: 150.644},
+    zoom: 15
+  });
+
+
+ infoWindow = new google.maps.InfoWindow;
+
+   // HTML5 geolocation.
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var pos = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+
+      infoWindow.setPosition(pos);
+      infoWindow.setContent('Location found.');
+      infoWindow.open(map);
+      map.setCenter(pos);
+    }, function() {
+      handleLocationError(true, infoWindow, map.getCenter());
+    });
+  } else {
+    // Browser doesn't support Geolocation
+    handleLocationError(false, infoWindow, map.getCenter());
+  }
+  for (var i = 0; i < foodTrucks.length; i++) {
+    //sets latitude and longitude of each foodTruck to variable latlng
+    var latLng = new google.maps.LatLng(foodTrucks[i].latitude, foodTrucks[i].longitude);
+    //creates a new marker
+    var marker = new google.maps.Marker({
+      //sets position as latLng variable
+      position: latLng,
+      //adds marker to map
+      map: map
+    });
+    // marker.addListener('click', function() { TODO: add markers listeners tags. 
+    // infowindow.open(map, marker);
+    // });
+  }
+} //Initmap endtag
 
   map = new google.maps.Map(document.getElementById('map'), {
     zoom: 15,
@@ -76,9 +119,10 @@ function initMap() {
   });
 }
 
+
 //adds currentFoodTrucks to google maps and list view on document
 function addTrucks(){
-  //logs our response 
+  //logs our response
   console.log(foodTrucks);
   //logs filtered response
   console.log(currentFoodTrucks);
@@ -110,6 +154,3 @@ function addTrucks(){
 
 //event listener
 $(document).on("click", "#food-search", callFood);
-
-
-  
