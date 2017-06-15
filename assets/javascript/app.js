@@ -105,19 +105,14 @@ function initMap() {
       position: latLng,
       //adds marker to map
       map: map
-    });
+});
+
+
     // marker.addListener('click', function() { TODO: add markers listeners tags. 
     // infowindow.open(map, marker);
     // });
   }
 } //Initmap endtag
-
-  map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 15,
-    center: new google.maps.LatLng(2.8,-187.3),
-    mapTypeId: 'terrain'
-  });
-
 
 
 //adds currentFoodTrucks to google maps and list view on document
