@@ -135,8 +135,19 @@ function addTrucks(){
       position: latLng,
       //adds marker to map
       map: map
-      });
-   }
+    });
+    //Mouse over 
+    var infowindow = new google.maps.InfoWindow({
+    content: 'food truck'
+  });
+
+  marker.addListener('mouseover', function() {
+    infowindow.open(map, marker);
+  });
+
+   };
+
+   
 
    // populating our list view of food trucks
    for (i = 0; i < currentFoodTrucks.length; i++){
