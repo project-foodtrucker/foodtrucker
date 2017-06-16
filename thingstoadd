@@ -13,3 +13,14 @@ when page is loaded, display food carts that are close to users location , then 
 assessors block addresses? maybe get address back from google maps for those ones
 
 yelp  api for more info?
+
+------google maps-----
+
+on hover food truck name. 
+
+on load allow location. 
+
+custom markers. 
+	- 
+	
+user location stored in a variable? 
