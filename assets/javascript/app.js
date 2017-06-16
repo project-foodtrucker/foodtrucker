@@ -77,8 +77,7 @@ function initMap() {
     zoom: 15
   });
 
-
- infoWindow = new google.maps.InfoWindow;
+  infoWindow = new google.maps.InfoWindow;
 
    // HTML5 geolocation.
   if (navigator.geolocation) {
@@ -99,22 +98,6 @@ function initMap() {
     // Browser doesn't support Geolocation
     handleLocationError(false, infoWindow, map.getCenter());
   }
-  for (var i = 0; i < currentFoodTrucks.length; i++) {
-    //sets latitude and longitude of each foodTruck to variable latlng
-    var latLng = new google.maps.LatLng(currentFoodTrucks[i].latitude, currentFoodTrucks[i].longitude);
-    //creates a new marker
-    var marker = new google.maps.Marker({
-      //sets position as latLng variable
-      position: latLng,
-      //adds marker to map
-      map: map
-});
-
-
-    // marker.addListener('click', function() { TODO: add markers listeners tags. 
-    // infowindow.open(map, marker);
-    // });
-  }
 } //Initmap endtag
 
 
@@ -134,22 +117,13 @@ function addTrucks(){
       //sets position as latLng variable
       position: latLng,
       //adds marker to map
-      map: map
+      map: map,
     });
-    //Mouse over 
-    var infowindow = new google.maps.InfoWindow({
-    content: 'food truck'
-  });
+    //variable for event-closure
+  attachTruckName(marker, currentFoodTrucks[i].applicant)
+};
 
-  marker.addListener('mouseover', function() {
-    infowindow.open(map, marker);
-  });
-
-   };
-
-   
-
-   // populating our list view of food trucks
+// populating our list view of food trucks
    for (i = 0; i < currentFoodTrucks.length; i++){
          var tr = $("<tr>");
          var truckName = $("<td>").text(currentFoodTrucks[i].applicant);
@@ -159,8 +133,21 @@ function addTrucks(){
          tr.append(truckName).append(cuisines).append(hours).append(truckLocation);
          $(".data").prepend(tr);
    }
-}
+} //addTrucks endtag
 
+function attachTruckName (marker, array){
+  var infowindow = new google.maps.InfoWindow({
+    content: array
+  });
+
+  marker.addListener('mouseover', function() {
+    infowindow.open(marker.get("map"), marker);
+  });
+
+  marker.addListener('mouseout', function() {
+    infowindow.close(marker.get("map"), marker);
+  });
+}; //attachTruckName endtag
 
 //event listener
 $(document).on("click", "#food-search", callFood);
