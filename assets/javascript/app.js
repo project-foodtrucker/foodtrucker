@@ -27,6 +27,9 @@ firebase.initializeApp(config);
 
 //searches for food trucks based on type of food
 function callFood(){
+   //empty response from previous ajax call
+   foodTrucks = [];
+   currentFoodTrucks = [];
     //gets input
     var food = $("#food-input").val().trim();
     console.log("this is food " + food);
@@ -96,9 +99,9 @@ function initMap() {
     // Browser doesn't support Geolocation
     handleLocationError(false, infoWindow, map.getCenter());
   }
-  for (var i = 0; i < foodTrucks.length; i++) {
+  for (var i = 0; i < currentFoodTrucks.length; i++) {
     //sets latitude and longitude of each foodTruck to variable latlng
-    var latLng = new google.maps.LatLng(foodTrucks[i].latitude, foodTrucks[i].longitude);
+    var latLng = new google.maps.LatLng(currentFoodTrucks[i].latitude, currentFoodTrucks[i].longitude);
     //creates a new marker
     var marker = new google.maps.Marker({
       //sets position as latLng variable
@@ -117,6 +120,7 @@ function initMap() {
 
 //adds currentFoodTrucks to google maps and list view on document
 function addTrucks(){
+  $(".data").empty();
   //logs our response
   console.log(foodTrucks);
   //logs filtered response
@@ -149,9 +153,9 @@ function addTrucks(){
    for (i = 0; i < currentFoodTrucks.length; i++){
          var tr = $("<tr>");
          var truckName = $("<td>").text(currentFoodTrucks[i].applicant);
-         var cuisines = $("<td>");
-         var hours = $("<td>");
-         var truckLocation = $("<td>").text(currentFoodTrucks[i].PermitLocation);
+         var cuisines = $("<td>").text(currentFoodTrucks[i].optionaltext);
+         var hours = $("<td>").text(currentFoodTrucks[i].starttime + '-' + currentFoodTrucks[i].endtime);
+         var truckLocation = $("<td>").text(currentFoodTrucks[i].location);
          tr.append(truckName).append(cuisines).append(hours).append(truckLocation);
          $(".data").prepend(tr);
    }
