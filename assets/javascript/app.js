@@ -14,17 +14,34 @@ var truckStartTime;
 var truckEndTime;
 
 // Initialize Firebase
-var config = {
- apiKey: "AIzaSyDhOKTWKmEunuZ7nIHZETJ-lwLzRsHVmDE",
- authDomain: "the-jarrod-experience.firebaseapp.com",
- databaseURL: "https://the-jarrod-experience.firebaseio.com",
- projectId: "the-jarrod-experience",
- storageBucket: "the-jarrod-experience.appspot.com",
- messagingSenderId: "31955044813"
-};
-
+  var config = {
+  apiKey: "AIzaSyDAjERE4gqWGHZr6CaEubs9jmKWHj-pmTw",
+  authDomain: "food-trucker-84cb9.firebaseapp.com",
+  databaseURL: "https://food-trucker-84cb9.firebaseio.com",
+  projectId: "food-trucker-84cb9",
+  storageBucket: "",
+  messagingSenderId: "533340638498"
+  };
 firebase.initializeApp(config);
+//firebase auth
 
+var provider = new firebase.auth.GoogleAuthProvider();
+firebase.auth().signInWithPopup(provider).then(function(result) {
+  // This gives you a Google Access Token. You can use it to access the Google API.
+  var token = result.credential.accessToken;
+  // The signed-in user info.
+  var user = result.user;
+  // ...
+}).catch(function(error) {
+  // Handle Errors here.
+  var errorCode = error.code;
+  var errorMessage = error.message;
+  // The email of the user's account used.
+  var email = error.email;
+  // The firebase.auth.AuthCredential type that was used.
+  var credential = error.credential;
+  // ...
+});
 //searches for food trucks based on type of food
 function callFood(){
    //empty response from previous ajax call
