@@ -1,9 +1,9 @@
 //stores our response from ajax call
 var foodTrucks = [];
-
 //filtered response
 var currentFoodTrucks = [];
-
+//stores users favorite trucks to send to firebase
+var favoriteTrucks = [];
 //google maps variable
 var map;
 
@@ -12,43 +12,18 @@ var hourFormat = "HH:mm:ss";
 var currentTime;
 var truckStartTime;
 var truckEndTime;
+var currentIndex;
 
 // Initialize Firebase
-  var config = {
-  apiKey: "AIzaSyDAjERE4gqWGHZr6CaEubs9jmKWHj-pmTw",
-  authDomain: "food-trucker-84cb9.firebaseapp.com",
-  databaseURL: "https://food-trucker-84cb9.firebaseio.com",
-  projectId: "food-trucker-84cb9",
-  storageBucket: "",
-  messagingSenderId: "533340638498"
-  };
+var config = {
+apiKey: "AIzaSyDAjERE4gqWGHZr6CaEubs9jmKWHj-pmTw",
+authDomain: "food-trucker-84cb9.firebaseapp.com",
+databaseURL: "https://food-trucker-84cb9.firebaseio.com",
+projectId: "food-trucker-84cb9",
+storageBucket: "",
+messagingSenderId: "533340638498"
+};
 firebase.initializeApp(config);
-//firebase auth
-//google sign in 
-
-
-
-$(".firebaseSend").on("click", function(){
-  var provider = new firebase.auth.GoogleAuthProvider();
-  firebase.auth().signInWithPopup(provider).then(function(result) {
-    console.log(result);
-  // This gives you a Google Access Token. You can use it to access the Google API.
-  var token = result.credential.accessToken;
-  // The signed-in user info.
-  var user = result.user;
-  // ...
-}).catch(function(error) {
-  // Handle Errors here.
-  var errorCode = error.code;
-  var errorMessage = error.message;
-  // The email of the user's account used.
-  var email = error.email;
-  // The firebase.auth.AuthCredential type that was used.
-  var credential = error.credential;
-  // ...
-});
-});
-
 
 //searches for food trucks based on type of food
 function callFood(){
@@ -137,8 +112,7 @@ function addTrucks(){
   createMarkers();
   addListView();
   
-  
-};
+}
 
 var markers = [];
 
@@ -154,7 +128,8 @@ function createMarkers() {
       //adds marker to map
       map: map,
     });
-    attachTruckName(marker, currentFoodTrucks[i].applicant)
+
+    attachTruckName(marker, currentFoodTrucks[i].applicant);
     markers.push(marker);
   }
 }
@@ -166,8 +141,6 @@ function hideMarkers() {
     }
 }
 
-
-
 // populating our list view of food trucks
 function addListView () {
    for (i = 0; i < currentFoodTrucks.length; i++){
@@ -176,8 +149,9 @@ function addListView () {
          var cuisines = $("<td>").text(currentFoodTrucks[i].optionaltext);
          var hours = $("<td>").text(currentFoodTrucks[i].starttime + '-' + currentFoodTrucks[i].endtime);
          var truckLocation = $("<td>").text(currentFoodTrucks[i].location);
-         tr.append(truckName).append(cuisines).append(hours).append(truckLocation);
-         $(".data").prepend(tr);
+         var addFavorite = $("<button>").text('Favorite').addClass('sendFavorite').attr("data-index", i);
+         tr.append(truckName).append(cuisines).append(hours).append(truckLocation).append(addFavorite);
+         $(".data").append(tr);
    }
  }
 //addTrucks endtag
@@ -194,8 +168,42 @@ function attachTruckName (marker, array){
   marker.addListener('mouseout', function() {
     infowindow.close(marker.get("map"), marker);
   });
-}; //attachTruckName endtag
+} //attachTruckName endtag
 
-//event listener
-$(document).on("click", "#food-search", callFood);
+//event listeners
+$(document).ready(function() {
 
+  //add truck to favorites event listener
+  $(document).on("click", ".sendFavorite", function(){
+    currentIndex = $(this).attr("data-index");
+    console.log(currentFoodTrucks[currentIndex].applicant);
+    console.log(currentFoodTrucks[currentIndex].optionaltext);
+    console.log(currentFoodTrucks[currentIndex].starttime + '-' + currentFoodTrucks[currentIndex].endtime);
+    console.log(currentFoodTrucks[currentIndex].location);
+  });
+
+  //food search event listener
+  $(document).on("click", "#food-search", callFood);
+
+  //firebase google sign in button 
+  $(".firebaseSend").on("click", function(){
+    var provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithPopup(provider).then(function(result) {
+      console.log(result);
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    var token = result.credential.accessToken;
+    // The signed-in user info.
+    var user = result.user;
+    // ...
+  }).catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // The email of the user's account used.
+    var email = error.email;
+    // The firebase.auth.AuthCredential type that was used.
+    var credential = error.credential;
+    // ...
+    });
+  });
+});
