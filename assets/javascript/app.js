@@ -156,6 +156,7 @@ function addListView () {
  }
 //addTrucks endtag
 
+//Event closure endtag.
 function attachTruckName (marker, array){
   var infowindow = new google.maps.InfoWindow({
     content: array
