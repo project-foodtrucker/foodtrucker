@@ -12,15 +12,26 @@ when page is loaded, display food carts that are close to users location , then 
 
 assessors block addresses? maybe get address back from google maps for those ones
 
-yelp  api for more info?
 
-------google maps-----
+-----google maps------
+see if we can remove the prompt on window load and just automatically load 
 
-on hover food truck name. 
 
-on load allow location. 
 
-custom markers. 
-	- 
-	
-user location stored in a variable? 
+
+------firebase databasing-------
+
+save users favorite trucks 
+
+
+
+
+
+
+
+
+-----research an api to use instead of yelp api
+
+zomato api key 
+
+5bcf346ea4e8839715a74ef34753945b

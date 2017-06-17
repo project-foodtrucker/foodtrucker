@@ -187,7 +187,7 @@ $(document).ready(function() {
   $(document).on("click", "#food-search", callFood);
 
   //firebase google sign in button 
-  $(".firebaseSend").on("click", function(){
+  $(document).on("click", "#gLogin", function(){
     var provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider).then(function(result) {
       console.log(result);
