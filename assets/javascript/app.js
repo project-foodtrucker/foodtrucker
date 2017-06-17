@@ -7,6 +7,7 @@ var favoriteTrucks = [];
 //google maps variable
 var map;
 
+
 //momentjs variables
 var hourFormat = "HH:mm:ss";
 var currentTime;
@@ -25,7 +26,7 @@ messagingSenderId: "533340638498"
 };
 firebase.initializeApp(config);
 var database = firebase.database();
-
+var userName;
 //searches for food trucks based on type of food
 function callFood(){
    //empty response from previous ajax call
@@ -183,7 +184,7 @@ $(document).ready(function() {
     console.log(currentFoodTrucks[currentIndex].starttime + '-' + currentFoodTrucks[currentIndex].endtime);
     console.log(currentFoodTrucks[currentIndex].location);
 
-    database.ref().push({
+    database.ref(userName).push({
       name:currentFoodTrucks[currentIndex].applicant,
       cuisines: currentFoodTrucks[currentIndex].optionaltext,
       startTime: currentFoodTrucks[currentIndex].starttime,
@@ -203,7 +204,8 @@ $(document).ready(function() {
     // This gives you a Google Access Token. You can use it to access the Google API.
     var token = result.credential.accessToken;
     // The signed-in user info.
-    var user = result.user;
+    userName = result.user.email;
+
     // ...
   }).catch(function(error) {
     // Handle Errors here.
