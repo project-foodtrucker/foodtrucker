@@ -26,7 +26,7 @@ messagingSenderId: "533340638498"
 };
 firebase.initializeApp(config);
 var database = firebase.database();
-var userName;
+var currentUser;
 //searches for food trucks based on type of food
 function callFood(){
    //empty response from previous ajax call
@@ -173,18 +173,24 @@ function attachTruckName (marker, array){
   });
 } //attachTruckName endtag
 
+//gets active user's email
+function getCurrentUser (){
+  currentUser = firebase.auth().currentUser.email;
+}
 //event listeners
 $(document).ready(function() {
 
   //add truck to favorites event listener
   $(document).on("click", ".sendFavorite", function(){
+    getCurrentUser();
+    console.log(currentUser);
     currentIndex = $(this).attr("data-index");
     console.log(currentFoodTrucks[currentIndex].applicant);
     console.log(currentFoodTrucks[currentIndex].optionaltext);
     console.log(currentFoodTrucks[currentIndex].starttime + '-' + currentFoodTrucks[currentIndex].endtime);
     console.log(currentFoodTrucks[currentIndex].location);
 
-    database.ref(userName).push({
+    database.ref(currentUser).push({
       name:currentFoodTrucks[currentIndex].applicant,
       cuisines: currentFoodTrucks[currentIndex].optionaltext,
       startTime: currentFoodTrucks[currentIndex].starttime,
@@ -203,9 +209,7 @@ $(document).ready(function() {
       console.log(result);
     // This gives you a Google Access Token. You can use it to access the Google API.
     var token = result.credential.accessToken;
-    // The signed-in user info.
-    userName = firebase.auth().currentUser.email;
-    console.log(userName);
+    
     // ...
   }).catch(function(error) {
     // Handle Errors here.
