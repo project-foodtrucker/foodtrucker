@@ -7,29 +7,34 @@
 
   <!--CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <!-- <link href="https://fonts.googleapis.com/css?family=Ravi+Prakash" rel="stylesheet"> -->
-  <!-- <link href="https://fonts.googleapis.com/css?family=Alegreya:900" rel="stylesheet"> -->
-  <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Ravi+Prakash" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Alegreya:900" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 
-<body class="introBody">
+<body>
+  <div id="fb-root"></div>
+   <script>
+       (function(d, s, id) {
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) return;
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9";
+     fjs.parentNode.insertBefore(js, fjs);
+ }
+ (document, 'script', 'facebook-jssdk'));
 
-  <nav class="introNav navbar-default">
-    <h1 class="iHeaderText">SF FoodTruckr</h1>
-    <div class="iconDiv">
-      <img class="iNavIcon" src="assets/images/food-truck.png" alt="truckicon">
-    </div>
-  </nav>
+ </script>
+  <!--Header-->
 
-<div class="loginDiv container-fluid">
-  <button id = "gLogin" class = "loginButton">Continue with Google</button>
-  <br>
-  <button id = "noLogin" class = "loginButton">
-    <a href="truck.html">Show me Foodtrucks!</a>
-  </button>
+<div class="jumbotron">
+  <div class="container">
+    <h1>foodTruckr!</h1>
+    <p>Find your favorite food trucks!</p>
+  </div>
 </div>
+
 
   <input class = "btn btn-primary" id="food-search" type="submit" value="Food Search!">
   <input class="searchInput" type="text" id="food-input" >
@@ -37,6 +42,7 @@
 
   <!-- google maps -->
 
+  <h3>My Google Maps Demo</h3>
   <div id="map"></div>
 
   <!-- list of food trucks -->
@@ -52,9 +58,8 @@
     <tr>
       <th>Truck Name</th>
       <th>Cuisines</th>
-      <th>Today's Hours</th>
+      <th>Hours</th>
       <th>Location</th>
-      <th>Favorite</th>
     </tr>
   </thead>
   <tbody class = "data">
@@ -68,11 +73,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
   <script src="assets/javascript/app.js"></script>
+  <script>getCurrentUser();</script>
   <script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjYcWNC726GLIAIvAAqO6pZGvmo9W-Hg4">
-
-
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjYcWNC726GLIAIvAAqO6pZGvmo9W-Hg4&callback=initMap">
 </script>
-<script src="https://apis.google.com/js/platform.js" async defer></script>
- <!--google platform library-->
 </body>

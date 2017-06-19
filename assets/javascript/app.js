@@ -1,47 +1,32 @@
 //stores our response from ajax call
 var foodTrucks = [];
-
 //filtered response
 var currentFoodTrucks = [];
-
+//stores users favorite trucks to send to firebase
+var favoriteTrucks = [];
 //google maps variable
 var map;
+
 
 //momentjs variables
 var hourFormat = "HH:mm:ss";
 var currentTime;
 var truckStartTime;
 var truckEndTime;
+var currentIndex;
 
 // Initialize Firebase
-  var config = {
-  apiKey: "AIzaSyDAjERE4gqWGHZr6CaEubs9jmKWHj-pmTw",
-  authDomain: "food-trucker-84cb9.firebaseapp.com",
-  databaseURL: "https://food-trucker-84cb9.firebaseio.com",
-  projectId: "food-trucker-84cb9",
-  storageBucket: "",
-  messagingSenderId: "533340638498"
-  };
+var config = {
+apiKey: "AIzaSyDAjERE4gqWGHZr6CaEubs9jmKWHj-pmTw",
+authDomain: "food-trucker-84cb9.firebaseapp.com",
+databaseURL: "https://food-trucker-84cb9.firebaseio.com",
+projectId: "food-trucker-84cb9",
+storageBucket: "",
+messagingSenderId: "533340638498"
+};
 firebase.initializeApp(config);
-//firebase auth
-
-var provider = new firebase.auth.GoogleAuthProvider();
-firebase.auth().signInWithPopup(provider).then(function(result) {
-  // This gives you a Google Access Token. You can use it to access the Google API.
-  var token = result.credential.accessToken;
-  // The signed-in user info.
-  var user = result.user;
-  // ...
-}).catch(function(error) {
-  // Handle Errors here.
-  var errorCode = error.code;
-  var errorMessage = error.message;
-  // The email of the user's account used.
-  var email = error.email;
-  // The firebase.auth.AuthCredential type that was used.
-  var credential = error.credential;
-  // ...
-});
+var database = firebase.database();
+var currentUser;
 //searches for food trucks based on type of food
 function callFood(){
    //empty response from previous ajax call
@@ -56,13 +41,10 @@ function callFood(){
     $.ajax({
       url: queryURL,
       method: "GET"
-  // data:{
-  //   "$limit" : 5000,
-    // "$app_token" : "dVrLcfTa7uHoJirIBxSAw9eo8" TODO: throws error?
-  // }
+  
 }).done(function(response){
     //asigns response to global foodTrucks array
-    foodTrucks=response;
+    foodTrucks = response;
     //getCurrentTrucks function filters foodTrucks array by current date and time
     getCurrentTrucks();
     //adds markers to google maps for each food truck
@@ -71,19 +53,22 @@ function callFood(){
 //clear input value
 $("#food-input").val(' ');
 });
+
+
 } //callFood endtag
 
 
 //filters foodTrucks array by current date and time
 function getCurrentTrucks(){
-   time = moment();
-   for (var i = 0; i < foodTrucks.length; i++) {
-      truckStartTime = moment(foodTrucks[i].start24, hourFormat);
-      truckEndTime = moment(foodTrucks[i].end24, hourFormat);
-      if(time.isBetween(truckStartTime, truckEndTime) && time.format('dddd') === foodTrucks[i].dayofweekstr){
-         currentFoodTrucks.push(foodTrucks[i]);
-      }
-   }
+  var time = moment();
+  currentFoodTrucks = [];
+  for (var i = 0; i < foodTrucks.length; i++) {
+    truckStartTime = moment(foodTrucks[i].start24, hourFormat);
+    truckEndTime = moment(foodTrucks[i].end24, hourFormat);
+    if(time.isBetween(truckStartTime, truckEndTime) && time.format('dddd') === foodTrucks[i].dayofweekstr){
+       currentFoodTrucks.push(foodTrucks[i]);
+    }
+  }
 }
 
 //creates a new google map
@@ -91,7 +76,7 @@ function initMap() {
 
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: -34.397, lng: 150.644},
-    zoom: 15
+    zoom: 12
   });
 
   infoWindow = new google.maps.InfoWindow;
@@ -125,7 +110,16 @@ function addTrucks(){
   console.log(foodTrucks);
   //logs filtered response
   console.log(currentFoodTrucks);
-  // Loop through the results array and place a marker for each set of coordinates.
+  hideMarkers();
+  createMarkers();
+  addListView();
+  
+}
+
+var markers = [];
+
+function createMarkers() {
+    // Loop through the results array and place a marker for each set of coordinates.
   for (var i = 0; i < currentFoodTrucks.length; i++){
     //sets latitude and longitude of each foodTruck to variable latlng
     var latLng = new google.maps.LatLng(currentFoodTrucks[i].latitude, currentFoodTrucks[i].longitude);
@@ -136,22 +130,35 @@ function addTrucks(){
       //adds marker to map
       map: map,
     });
-    //variable for event-closure
-  attachTruckName(marker, currentFoodTrucks[i].applicant)
-};
+
+    attachTruckName(marker, currentFoodTrucks[i].applicant);
+    markers.push(marker);
+  }
+}
+
+
+function hideMarkers() {
+    for (var i = 0; i < markers.length; i++) {
+        markers[i].setMap(null); //Remove the marker from the map
+    }
+}
 
 // populating our list view of food trucks
+function addListView () {
    for (i = 0; i < currentFoodTrucks.length; i++){
          var tr = $("<tr>");
          var truckName = $("<td>").text(currentFoodTrucks[i].applicant);
          var cuisines = $("<td>").text(currentFoodTrucks[i].optionaltext);
          var hours = $("<td>").text(currentFoodTrucks[i].starttime + '-' + currentFoodTrucks[i].endtime);
          var truckLocation = $("<td>").text(currentFoodTrucks[i].location);
-         tr.append(truckName).append(cuisines).append(hours).append(truckLocation);
-         $(".data").prepend(tr);
+         var addFavorite = $("<button>").text('Favorite').addClass('sendFavorite').attr("data-index", i);
+         tr.append(truckName).append(cuisines).append(hours).append(truckLocation).append(addFavorite);
+         $(".data").append(tr);
    }
-} //addTrucks endtag
+ }
+//addTrucks endtag
 
+//Event closure endtag.
 function attachTruckName (marker, array){
   var infowindow = new google.maps.InfoWindow({
     content: array
@@ -164,7 +171,55 @@ function attachTruckName (marker, array){
   marker.addListener('mouseout', function() {
     infowindow.close(marker.get("map"), marker);
   });
-}; //attachTruckName endtag
+} //attachTruckName endtag
 
-//event listener
-$(document).on("click", "#food-search", callFood);
+//gets active user's email
+function getCurrentUser (){
+  currentUser = firebase.auth().currentUser.email;
+}
+//event listeners
+$(document).ready(function() {
+
+  //add truck to favorites event listener
+  $(document).on("click", ".sendFavorite", function(){
+    getCurrentUser();
+    console.log(currentUser);
+    currentIndex = $(this).attr("data-index");
+    console.log(currentFoodTrucks[currentIndex].applicant);
+    console.log(currentFoodTrucks[currentIndex].optionaltext);
+    console.log(currentFoodTrucks[currentIndex].starttime + '-' + currentFoodTrucks[currentIndex].endtime);
+    console.log(currentFoodTrucks[currentIndex].location);
+
+    database.ref(currentUser).push({
+      name:currentFoodTrucks[currentIndex].applicant,
+      cuisines: currentFoodTrucks[currentIndex].optionaltext,
+      startTime: currentFoodTrucks[currentIndex].starttime,
+      endTime: currentFoodTrucks[currentIndex].endtime,
+      location: currentFoodTrucks[currentIndex].location,
+    });
+  });
+
+  //food search event listener
+  $(document).on("click", "#food-search", callFood);
+
+  //firebase google sign in button 
+  $(document).on("click", "#gLogin", function(){
+    var provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithPopup(provider).then(function(result) {
+      console.log(result);
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    var token = result.credential.accessToken;
+    
+    // ...
+  }).catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // The email of the user's account used.
+    var email = error.email;
+    // The firebase.auth.AuthCredential type that was used.
+    var credential = error.credential;
+    // ...
+    });
+  });
+});

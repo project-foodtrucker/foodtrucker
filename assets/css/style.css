@@ -1,8 +1,69 @@
+.introBody {
+  background-image: url(../images/shortrib1-food-truck-BG.jpg);
+}
+
+.introNav {
+  width: 60%;
+  height: 150px;
+  margin: 0 auto;
+  background-color: maroon;
+  color: white;
+  border-radius: 75px;
+}
+
+.iHeaderText {
+  line-height: 164px;
+  /*text-align: left;*/
+  margin-left: 55px;
+  font-family: 'Baloo Bhaina', cursive;
+  font-size: 80px;
+}
+
+.iNavIcon {
+  position: relative;
+  left: 15px;
+  top: 10px;
+}
+
+.iconDiv {
+  float: right;
+  /*margin-right: 40px;*/
+  position: relative;
+  bottom: 146px;
+  right: 40px;
+  background-color: white;
+  height: 90px;
+  width: 90px;
+  border-radius: 75px;
+}
+
 .nav {
   height: 100px;
   width: 95%;
   margin: 0 auto;
   color: maroon;
+}
+
+.loginDiv {
+  text-align: center;
+  /*background-color: lightblue;*/
+  margin-top: 10px;
+  margin: 0 auto;
+  width: 30%;
+}
+
+.loginButton {
+  margin: 10px;
+  width: 300px;
+  height: 40px;
+}
+
+#gLogin {
+
+}
+
+#noLogin {
+
 }
 
 #map {
