@@ -26,7 +26,6 @@ messagingSenderId: "533340638498"
 };
 firebase.initializeApp(config);
 var database = firebase.database();
-var currentUser;
 //searches for food trucks based on type of food
 function callFood(){
    //empty response from previous ajax call
@@ -175,14 +174,15 @@ function attachTruckName (marker, array){
 
 //gets active user's email
 function getCurrentUser (){
-  currentUser = firebase.auth().currentUser.email;
+  if(firebase.auth().currentUser.email){
+  return firebase.auth().currentUser.email;
+  }
 }
 //event listeners
 $(document).ready(function() {
-  getCurrentUser();
+  var currentUser = getCurrentUser();
   //add truck to favorites event listener
   $(document).on("click", ".sendFavorite", function(){
-    getCurrentUser();
     console.log(currentUser);
     currentIndex = $(this).attr("data-index");
     console.log(currentFoodTrucks[currentIndex].applicant);
