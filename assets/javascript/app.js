@@ -48,7 +48,7 @@ function callFood(){
     //getCurrentTrucks function filters foodTrucks array by current date and time
     getCurrentTrucks();
     //adds markers to google maps for each food truck
-    addTrucks();
+      addTrucks();
 
 //clear input value
 $("#food-input").val(' ');
@@ -179,7 +179,7 @@ function getCurrentUser (){
 }
 //event listeners
 $(document).ready(function() {
-
+  getCurrentUser();
   //add truck to favorites event listener
   $(document).on("click", ".sendFavorite", function(){
     getCurrentUser();
