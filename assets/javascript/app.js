@@ -180,9 +180,9 @@ function getCurrentUser (){
 }
 //event listeners
 $(document).ready(function() {
-  var currentUser = getCurrentUser();
   //add truck to favorites event listener
   $(document).on("click", ".sendFavorite", function(){
+    var currentUser = getCurrentUser();
     console.log(currentUser);
     currentIndex = $(this).attr("data-index");
     console.log(currentFoodTrucks[currentIndex].applicant);
