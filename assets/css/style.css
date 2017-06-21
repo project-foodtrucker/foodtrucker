@@ -46,16 +46,16 @@
 
 .loginDiv {
   text-align: center;
-  /*background-color: lightblue;*/
-  margin-top: 10px;
+  margin-top: 20px;
+  width: 400px;
   margin: 0 auto;
-  width: 30%;
 }
 
 .loginButton {
   margin: 10px;
   width: 300px;
   height: 40px;
+  text-align: center;
 }
 
 #gLogin {
@@ -68,5 +68,93 @@
 
 #map {
   height: 400px;
-  width: 100%;
+  width: 40%;
+  border-style: solid;
+  border-color: blue;
+  margin-top: 40px;
+  margin-left: 10px;
+  padding: 5px;
+ }
+
+ /*.sticky-block {
+   max-width: 585px;
+ }*/
+
+#truckNav {
+  vertical-align: middle;
+}
+
+#tableTitle {
+  text-align: center;
+}
+
+#mapContainer {
+  position: fixed;
+}
+
+.sendFavorite {
+  margin-top: 5px;
+}
+
+
+ @media screen and (max-width: 1200px) {
+
+   .iHeaderText {
+     line-height: 164px;
+     /*text-align: left;*/
+     margin-left: 55px;
+     font-family: 'Baloo Bhaina', cursive;
+     font-size: 60px;
+   }
+
+   .introNav {
+     width: 60%;
+     height: 150px;
+     margin: 0 auto;
+     background-color: maroon;
+     color: white;
+     border-radius: 75px;
+   }
+
+ }
+
+ @media screen and (max-width: 980px) {
+
+   .iHeaderText {
+     line-height: 164px;
+     /*text-align: left;*/
+     margin-left: 55px;
+     font-family: 'Baloo Bhaina', cursive;
+     font-size: 40px;
+   }
+
+   .introNav {
+     width: 60%;
+     height: 150px;
+     margin: 0 auto;
+     background-color: maroon;
+     color: white;
+     border-radius: 75px;
+   }
+
+   .iNavIcon {
+     position: relative;
+     left: 15px;
+     top: 10px;
+    height: 40px;
+    width: 40px;
+   }
+
+   .iconDiv {
+     float: right;
+     /*margin-right: 40px;*/
+     position: relative;
+     bottom: 146px;
+     right: 40px;
+     background-color: white;
+     height: 60px;
+     width: 60px;
+     border-radius: 75px;
+   }
+
  }
