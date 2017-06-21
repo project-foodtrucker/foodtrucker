@@ -40,7 +40,7 @@ function callFood(){
     $.ajax({
       url: queryURL,
       method: "GET"
-  
+
 }).done(function(response){
     //asigns response to global foodTrucks array
     foodTrucks = response;
@@ -75,7 +75,7 @@ function initMap() {
 
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: -34.397, lng: 150.644},
-    zoom: 12
+    zoom: 13
   });
 
   infoWindow = new google.maps.InfoWindow;
@@ -88,9 +88,9 @@ function initMap() {
         lng: position.coords.longitude
       };
 
-      infoWindow.setPosition(pos);
-      infoWindow.setContent('Location found.');
-      infoWindow.open(map);
+      // infoWindow.setPosition(pos);
+      // infoWindow.setContent('Location found.');
+      // infoWindow.open(map);
       map.setCenter(pos);
     }, function() {
       handleLocationError(true, infoWindow, map.getCenter());
@@ -112,10 +112,11 @@ function addTrucks(){
   hideMarkers();
   createMarkers();
   addListView();
-  
+
 }
 
 var markers = [];
+// var iconBase = 'coffee-truck.png'
 
 function createMarkers() {
     // Loop through the results array and place a marker for each set of coordinates.
@@ -128,6 +129,8 @@ function createMarkers() {
       position: latLng,
       //adds marker to map
       map: map,
+  //custom icon
+      icon: 'assets/Images/van-orange.png'
     });
 
     attachTruckName(marker, currentFoodTrucks[i].applicant);
@@ -150,7 +153,7 @@ function addListView () {
          var cuisines = $("<td>").text(currentFoodTrucks[i].optionaltext);
          var hours = $("<td>").text(currentFoodTrucks[i].starttime + '-' + currentFoodTrucks[i].endtime);
          var truckLocation = $("<td>").text(currentFoodTrucks[i].location);
-         var addFavorite = $("<button>").text('Favorite').addClass('sendFavorite').attr("data-index", i);
+         var addFavorite = $("<button>").text('Favorite').addClass('sendFavorite btn btn-danger').attr("data-index", i);
          tr.append(truckName).append(cuisines).append(hours).append(truckLocation).append(addFavorite);
          $(".data").append(tr);
    }
@@ -174,8 +177,8 @@ function attachTruckName (marker, array){
 
 //gets active user's email
 function getCurrentUser (){
-  if(firebase.auth().currentUser.email){
-  return firebase.auth().currentUser.email;
+  if(firebase.auth().currentUser.uid){
+  return firebase.auth().currentUser.uid;
   }
 }
 //event listeners
@@ -196,20 +199,21 @@ $(document).ready(function() {
       startTime: currentFoodTrucks[currentIndex].starttime,
       endTime: currentFoodTrucks[currentIndex].endtime,
       location: currentFoodTrucks[currentIndex].location,
+      uid: currentUser
     });
   });
 
   //food search event listener
   $(document).on("click", "#food-search", callFood);
 
-  //firebase google sign in button 
+  //firebase google sign in button
   $(document).on("click", "#gLogin", function(){
     var provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider).then(function(result) {
       console.log(result);
     // This gives you a Google Access Token. You can use it to access the Google API.
     var token = result.credential.accessToken;
-    
+
     // ...
   }).catch(function(error) {
     // Handle Errors here.
@@ -222,4 +226,24 @@ $(document).ready(function() {
     // ...
     });
   });
+
+  //show favorites event handler
+  $(".showFavorites").on("click", function(){
+    event.preventDefault();
+    console.log('hi');
+    database.ref().on("child_added", function(snapshot) {
+      console.log(snapshot.val())
+    });
+  });
 });
+
+
+/*
+
+GET FIREBASE DATA
+
+EVENT LISTENER ON SHOW FAVORITES ICON
+
+WHEN CLICKED, ON CHILD ADDED FUNCTION IS CALLED TO RENDER DATA FROM FIREBASE
+
+*/

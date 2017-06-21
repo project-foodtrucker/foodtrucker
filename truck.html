@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>foodTrucker</title>
+  <title>SF FoodTruckr</title>
+  <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
   <!--CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -14,45 +15,33 @@
 </head>
 
 <body>
-  <div id="fb-root"></div>
-   <script>
-       (function(d, s, id) {
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) return;
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9";
-     fjs.parentNode.insertBefore(js, fjs);
- }
- (document, 'script', 'facebook-jssdk'));
-
- </script>
   <!--Header-->
+<nav id="truckNav" class="nav navbar-default container-fluid">
+    <h1>SF foodTruckr</h1>
+      <p>Find your favorite food trucks!</p>
 
-<div class="jumbotron">
-  <div class="container">
-    <h1>foodTruckr!</h1>
-    <p>Find your favorite food trucks!</p>
-  </div>
-</div>
+        <input class="searchInput" type="text" id="food-input">
+        <button class = "btn btn-primary" id="food-search" type="submit">Truck Search!</button>
 
+        <input class="favoriteRetrieve" type="text" id="favCall">
+        <button class = "btn btn-success showFavorites">Show My Favorites</button>
 
-  <input class = "btn btn-primary" id="food-search" type="submit" value="Food Search!">
-  <input class="searchInput" type="text" id="food-input" >
+</nav>
+<div class="container">
+  <div class="row">
+    <!-- google maps -->
 
-
-  <!-- google maps -->
-
-  <h3>My Google Maps Demo</h3>
-  <div id="map"></div>
+  <!-- <div id="mapContainer" class="col-md-6"> -->
+  <div id="map" class="col-md-6"></div>
+  <!-- </div> -->
 
   <!-- list of food trucks -->
-  <h1>Trucks Nearby</h1>
-
+  <div id="right" class="col-md-6">
 
   <table class="table table-hover trucks">
     <thead>
       <tr>
-        <th>Food Trucks</th>
+        <h1 id="tableTitle">Trucks Near You</h1>
       </tr>
     </thead>
     <tr>
@@ -65,6 +54,9 @@
   <tbody class = "data">
   </tbody>
   </table>
+  </div>
+</div><!--Row endtag-->
+</div><!--container endtag-->
 
 
   <!-- Latest compiled and minified JavaScript -->
