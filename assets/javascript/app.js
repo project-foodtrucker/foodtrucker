@@ -229,10 +229,9 @@ $(document).ready(function() {
 
   //show favorites event handler
   $(".showFavorites").on("click", function(){
-    event.preventDefault();
-    console.log('hi');
-    database.ref().on("child_added", function(snapshot) {
-      console.log(snapshot.val())
+    var currentUser = getCurrentUser();
+    database.ref(currentUser).on("child_added", function(snapshot) {
+      console.log(snapshot.val().cuisines);
     });
   });
 });
