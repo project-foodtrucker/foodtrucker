@@ -199,6 +199,7 @@ $(document).ready(function() {
       startTime: currentFoodTrucks[currentIndex].starttime,
       endTime: currentFoodTrucks[currentIndex].endtime,
       location: currentFoodTrucks[currentIndex].location,
+      uid: currentUser
     });
   });
 
@@ -225,4 +226,24 @@ $(document).ready(function() {
     // ...
     });
   });
+
+  //show favorites event handler
+  $(".showFavorites").on("click", function(){
+    event.preventDefault();
+    console.log('hi');
+    database.ref().on("child_added", function(snapshot) {
+      console.log(snapshot.val())
+    });
+  });
 });
+
+
+/*
+
+GET FIREBASE DATA
+
+EVENT LISTENER ON SHOW FAVORITES ICON
+
+WHEN CLICKED, ON CHILD ADDED FUNCTION IS CALLED TO RENDER DATA FROM FIREBASE
+
+*/
