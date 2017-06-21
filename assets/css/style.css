@@ -1,5 +1,5 @@
 .introBody {
-  background-image: url(../images/shortrib1-food-truck-BG.jpg);
+  background-image: url(../Images/shortrib1-food-truck-BG.jpg);
 }
 
 .introNav {
@@ -74,6 +74,7 @@
   margin-top: 40px;
   margin-left: 10px;
   padding: 5px;
+  position: fixed !important;
  }
 
  /*.sticky-block {
@@ -94,6 +95,10 @@
 
 .sendFavorite {
   margin-top: 5px;
+}
+
+#right {
+  float: right;
 }
 
 
