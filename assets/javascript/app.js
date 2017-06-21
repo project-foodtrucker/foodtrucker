@@ -183,6 +183,22 @@ function getCurrentUser (){
 }
 //event listeners
 $(document).ready(function() {
+
+  firebase.auth().createUserWithEmailAndPassword('sternj20@hotmail.com', 'password').catch(function(error) {
+  // Handle Errors here.
+  var errorCode = error.code;
+  var errorMessage = error.message;
+  // ...
+});
+
+  firebase.auth().signInWithEmailAndPassword('sternj20@hotmail.com', 'password').catch(function(error) {
+  // Handle Errors here.
+  var errorCode = error.code;
+  var errorMessage = error.message;
+  // ...
+});
+
+
   //add truck to favorites event listener
   $(document).on("click", ".sendFavorite", function(){
     var currentUser = getCurrentUser();
