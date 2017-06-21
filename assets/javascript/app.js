@@ -229,20 +229,45 @@ $(document).ready(function() {
 
   //show favorites event handler
   $(".showFavorites").on("click", function(){
+    var openToday = 'maybe';
+    var closeButton = $("<td>");
+    closeButton.addClass('close').html('&times;');
+    $(".modal-content").empty();
+    $(".params").append(closeButton);
     var currentUser = getCurrentUser();
     database.ref(currentUser).on("child_added", function(snapshot) {
-      console.log(snapshot.val().cuisines);
+      var tr = $("<tr>");
+      tr.append("<td>" + snapshot.val().name + "</td>");
+      tr.append("<td>" + snapshot.val().cuisines+ "</td>");
+      tr.append("<td>" + openToday+ "</td>");
+      tr.append("<td>" + snapshot.val().location + "</td>");
+      $(".modal-content").append(tr);
     });
+    modal.show();
   });
 });
 
 
-/*
+//MODAL//
 
-GET FIREBASE DATA
+var modal = $("#myModal");
+var btn = $("#myBtn");
 
-EVENT LISTENER ON SHOW FAVORITES ICON
+//opens modal when user clicks on button
+btn.on("click", function(){
 
-WHEN CLICKED, ON CHILD ADDED FUNCTION IS CALLED TO RENDER DATA FROM FIREBASE
+});
 
-*/
+//closes modal when user clicks on button
+$(document).on("click", ".close", function(){
+  modal.hide();
+});
+
+//closes modal when user clicks anywhere outside of modal
+
+window.onclick = function(event){
+  if (event.target === modal[0]){
+    modal.hide();
+  }
+};
+
