@@ -245,11 +245,12 @@ $(document).ready(function() {
 
   //show favorites event handler
   $(".showFavorites").on("click", function(){
+   
     var openToday = 'maybe';
-    var closeButton = $("<td>");
-    closeButton.addClass('close').html('&times;');
+    // var closeButton = $("<td>");
+    // closeButton.addClass('close').html('&times;');
     $(".modal-content").empty();
-    $(".params").append(closeButton);
+    // $(".params").append(closeButton);
     var currentUser = getCurrentUser();
     database.ref(currentUser).on("child_added", function(snapshot) {
       var tr = $("<tr>");
@@ -281,9 +282,44 @@ $(document).on("click", ".close", function(){
 
 //closes modal when user clicks anywhere outside of modal
 
-window.onclick = function(event){
-  if (event.target === modal[0]){
-    modal.hide();
+// window.onclick = function(event){
+//   if (event.target === modal[0]){
+//     modal.hide();
+//   }
+// };
+
+
+//login validation
+  firebase.auth().createUserWithEmailAndPassword('sternj20@hotmail.com', 'password').catch(function(error) {
+  // Handle Errors here.
+  var errorCode = error.code;
+  var errorMessage = error.message;
+  // ...
+});
+
+  firebase.auth().signInWithEmailAndPassword('sternj20@hotmail.com', 'password').catch(function(error) {
+  // Handle Errors here.
+  var errorCode = error.code;
+  var errorMessage = error.message;
+  // ...
+});
+
+  firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    $(".loginInfo").text('you are logged in');
+    // User is signed in.
+    var displayName = user.displayName;
+    var email = user.email;
+    var emailVerified = user.emailVerified;
+    var photoURL = user.photoURL;
+    var isAnonymous = user.isAnonymous;
+    var uid = user.uid;
+    var providerData = user.providerData;
+    // ...
+  } else {
+     $(".loginInfo").text('you are not');
+    // User is signed out.
+    // ...
   }
-};
+});
 
