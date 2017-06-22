@@ -71,7 +71,7 @@
   width: 40%;
   border-style: solid;
   border-color: blue;
-  margin-top: 40px;
+  margin-top: 100px;
   margin-left: 10px;
   padding: 5px;
   position: fixed !important;
@@ -85,7 +85,7 @@
   vertical-align: middle;
 }
 
-#tableTitle {
+h1 {
   text-align: center;
 }
 
@@ -163,3 +163,43 @@
    }
 
  }
+
+
+/*modal*/
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    float:right;
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 60%; /* Full width */
+    height: 50%; /* Full height */
+    overflow:auto;
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content, .modal-window {
+    background-color: #fefefe;
+    border: 1px solid #888;
+    width: 100%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
