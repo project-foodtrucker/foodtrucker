@@ -245,7 +245,7 @@ $(document).ready(function() {
 
   //show favorites event handler
   $(".showFavorites").on("click", function(){
-   
+
     var openToday = 'maybe';
     // var closeButton = $("<td>");
     // closeButton.addClass('close').html('&times;');
@@ -290,19 +290,6 @@ $(document).on("click", ".close", function(){
 
 
 //login validation
-  firebase.auth().createUserWithEmailAndPassword('sternj20@hotmail.com', 'password').catch(function(error) {
-  // Handle Errors here.
-  var errorCode = error.code;
-  var errorMessage = error.message;
-  // ...
-});
-
-  firebase.auth().signInWithEmailAndPassword('sternj20@hotmail.com', 'password').catch(function(error) {
-  // Handle Errors here.
-  var errorCode = error.code;
-  var errorMessage = error.message;
-  // ...
-});
 
   firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
