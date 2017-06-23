@@ -145,6 +145,8 @@ function hideMarkers() {
     }
 }
 
+
+
 // populating our list view of food trucks
 function addListView () {
    for (i = 0; i < currentFoodTrucks.length; i++){
@@ -153,7 +155,7 @@ function addListView () {
          var cuisines = $("<td>").text(currentFoodTrucks[i].optionaltext);
          var hours = $("<td>").text(currentFoodTrucks[i].starttime + '-' + currentFoodTrucks[i].endtime);
          var truckLocation = $("<td>").text(currentFoodTrucks[i].location);
-         var addFavorite = $("<button>").text('Favorite').addClass('sendFavorite btn btn-danger').attr("data-index", i);
+         var addFavorite = $("<button>").text('+').addClass('sendFavorite btn-floating btn-large waves-effect waves-light lightblue').attr("data-index", i);
          tr.append(truckName).append(cuisines).append(hours).append(truckLocation).append(addFavorite);
          $(".data").append(tr);
    }
@@ -220,7 +222,7 @@ $(document).ready(function() {
   });
 
   //food search event listener
-  $(document).on("click", "#food-search", callFood);
+  $(document).on("click", "#food-search", callFood); //change to food-input
 
   //firebase google sign in button
   $(document).on("click", "#gLogin", function(){
