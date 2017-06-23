@@ -1,24 +1,59 @@
 <!doctype html>
 <html lang="en">
 <head>
-
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SF FoodTruckr</title>
-  <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
-  <!--CSS -->
-
-  <!--Import materialize.css-->
-  <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.css"/>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <!-- Compiled and minified MATERIALIZE CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/css/materialize.min.css">
+  <!-- Compiled and minified MATERIALIZE JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/js/materialize.min.js"></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-  <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina" rel="stylesheet">
+  <link href="favicon.ico" rel="shortcut icon" type="image/x-icon"/>
   <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-
 </head>
 
+
+  
+<!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Add an Image</h4>
+
+      <div class="row">
+        <form class="col s12">
+          <div class="row modal-form-row">
+            <div class="input-field col s12">
+              <input id="image_url" type="text" class="validate">
+              <label for="image_url">Image URL</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="image_title" type="text" class="validate">
+              <label for="image_title">Title</label>
+            </div>
+          </div>       
+          <div class="row">
+            <div class="input-field col s12">
+              <textarea id="image_description" type="text" class="materialize-textarea validate"></textarea>
+              <label for="image_description">Description</label>
+            </div>
+          </div>             
+        </form>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a class=" modal-action modal-close waves-effect waves-green btn-flat">Submit</a>
+    </div>
+  </div>
+
+
 <body class="introBody">
+
 
 <div class="upperLanding">
   <nav id="landingPageNav">
@@ -38,7 +73,7 @@
       </div>
 
       <div class="col s4">
-        <a id="fLogin" class="waves-effect waves-light btn">Login with SF Foodtruckr</a>
+        <button data-target="modal1" class="btn modal-trigger">Login</button>
       </div>
 
       <div class="col s4">
@@ -46,6 +81,9 @@
       </div>
     </div>
   </div>
+
+ 
+
 
 <div class="lowerLanding">
 <!------------------------------------------------------------------------>
@@ -104,16 +142,12 @@
 </div> <!--lowerLanding endtag-->
 
 
-  <!-- Latest compiled and minified JavaScript -->
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-  <script type="text/javascript" src="js/materialize.min.js"></script>
+  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
   <script src="assets/javascript/app.js"></script>
   <script async defer
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjYcWNC726GLIAIvAAqO6pZGvmo9W-Hg4">
-
-
 </script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
  <!--google platform library-->

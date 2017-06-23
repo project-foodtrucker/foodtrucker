@@ -174,6 +174,8 @@ function getCurrentUser() {
 }
 
 $(document).ready(function() {
+  // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+  $('.modal-trigger').leanModal();
   //add truck to favorites event listener
   $(document).on("click", ".sendFavorite", function(){
     var currentUser = getCurrentUser();
@@ -213,8 +215,11 @@ $(document).ready(function() {
 });
 
   //show favorites event handler
-  $(".showFavorites").on("click", function(){
-      //empties the content of modal so that we don't add duplicates on multiple clicks of button
+$(".showFavorites").on("click", renderFavorites);
+
+
+function renderFavorites(){
+    //empties the content of modal so that we don't add duplicates on multiple clicks of button
     $(".modal-content").empty();
     var openToday = 'maybe';
     //stores the keys pushed to firebase for each favorite truck
@@ -226,7 +231,6 @@ $(document).ready(function() {
     query.once("value")
     .then(function(snapshot) {
       snapshot.forEach(function(childSnapshot) {
-      
           // key is the unique key stored in firebase when we push onto our object
           var key = childSnapshot.key;
           favoriteKeys.push(key);
@@ -247,9 +251,7 @@ $(document).ready(function() {
         });
       });
       modal.show();
-  });
-});
-
+}
 //MODAL//
 
 var modal = $("#myModal");
@@ -301,7 +303,8 @@ firebase.auth().onAuthStateChanged(function(user) {
 $(".logOut").on("click", function(){
   firebase.auth().signOut().then(function() {
   // Sign-out successful.
-}).catch(function(error) {
+  }).catch(function(error) {
   // An error happened.
+});
 });
 });

@@ -1,86 +1,78 @@
 <!doctype html>
 <html lang="en">
 <head>
-<title>SF FoodTruckr</title>
-
+  <title>SF FoodTruckr</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
   <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
-  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <!-- Compiled and minified MATERIALIZE CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/css/materialize.min.css">
   <!-- Compiled and minified MATERIALIZE JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>        
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/js/materialize.min.js"></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
   <link href="favicon.ico" rel="shortcut icon" type="image/x-icon"/>
-
   <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-
 </head>
 
 <body id="truckBody">
 
-
 <!--Navbar-->
 <nav id="truckNav" class="teal container">
-    <div class="nav-wrapper container">
-      <a href="#" class="brand-logo">SF Foodtruckr</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a class="waves-effect waves-light btn showFavorites"><i class ="material-icons left">thumb_up</i>Show Favorites</a></li>
-        <!-- Dropdown Trigger -->
-        <li><a class='dropdown-button btn' href='#' data-activates='dropdown1'>Local Favs</a></li>
-        <!-- Dropdown Structure -->
-        <ul id='dropdown1' class='dropdown-content'>
-          <li><a href="https://offthegrid.com/" target = "_blank">Off the Grid</a></li>
-          <li><a href="https://sparksocialsf.com/" target= "_blank">Spark Social</a></li>
-          <li><a href="#!">three</a></li>
-          <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
-          <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
-        </ul>
-      
-        <li class = "loginInfo">
-        </li>
-        <button class = "waves-effect waves-light btn logOut">Log Out</a></button>
+  <div class="nav-wrapper container">
+    <a href="#" class="brand-logo">SF Foodtruckr</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a class="waves-effect waves-light btn showFavorites"><i class ="material-icons left">thumb_up</i>Show Favorites</a></li>
+      <!-- Dropdown Trigger -->
+      <li><a class='dropdown-button btn' href='#' data-activates='dropdown1'>Local Favs</a></li>
+      <!-- Dropdown Structure -->
+      <ul id='dropdown1' class='dropdown-content'>
+        <li><a href="https://offthegrid.com/" target = "_blank">Off the Grid</a></li>
+        <li><a href="https://sparksocialsf.com/" target= "_blank">Spark Social</a></li>
+        <li><a href="#!">three</a></li>
+        <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
+        <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
       </ul>
-    </div>
-  </nav>
-  <!--Header-->
 
+      <li class = "loginInfo">
+      </li>
+      <button class = "waves-effect waves-light btn logOut">Log Out</a></button>
+    </ul>
+  </div>
+</nav>
+<!--Header-->
 <div class="searchWrapper">
-    <!-- <i class="prefix material-icons">search</i> -->
-    <input class="searchInput" type="text" id="food-input">
-    <br>
+  <!-- <i class="prefix material-icons">search</i> -->
+  <input class="searchInput" type="text" id="food-input">
+  <br>
   <button class = "btn btn-primary" id="food-search" type="submit">Truck Search!</button>
 </div>
 
-  <div class="row">
+<div class="row">
 
   <div id="map" class="col s6"></div>
-  <!-- </div> -->
 
   <!-- list of food trucks -->
   <div id="right" class="col s6">
 
 
-  <table class="table highlight truckTable">
-    <thead>
-      <tr>
-        <h4 id="tableTitle">Trucks Near You</h1>
-      </tr>
-    </thead>
-    <tr>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody class = "data">
-  </tbody>
-  </table>
+    <table class="table highlight truckTable">
+      <thead>
+        <tr>
+          <h4 id="tableTitle">Trucks Near You</h1>
+          </tr>
+        </thead>
+        <tr>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody class = "data">
+      </tbody>
+    </table>
   </div>
 </div><!--Row endtag-->
 </div><!--container endtag-->
@@ -110,12 +102,12 @@
 
 
 
-  <!-- Latest compiled and minified JavaScript -->
+<!-- Latest compiled and minified JavaScript -->
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
-  <script src="assets/javascript/app.js"></script>
-  <script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjYcWNC726GLIAIvAAqO6pZGvmo9W-Hg4&callback=initMap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+<script src="assets/javascript/app.js"></script>
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjYcWNC726GLIAIvAAqO6pZGvmo9W-Hg4&callback=initMap">
 </script>
 </body>
