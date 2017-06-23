@@ -6,8 +6,12 @@ var currentFoodTrucks = [];
 var favoriteTrucks = [];
 //google maps variable
 var map;
-
-
+//counter for our our favorite trucks list
+var index=0;
+//current user id 
+var currentUser;
+//google maps markers
+var markers = [];
 //momentjs variables
 var hourFormat = "HH:mm:ss";
 var currentTime;
@@ -33,7 +37,6 @@ function callFood() {
     currentFoodTrucks = [];
     //gets input
     var food = $("#food-input").val().trim();
-    console.log("this is food " + food);
     //api url
     var queryURL = "https://data.sfgov.org/resource/bbb8-hzi6.json?$q=" + food;
 
@@ -52,8 +55,6 @@ function callFood() {
         //clear input value
         $("#food-input").val(' ');
     });
-
-
 } //callFood endtag
 
 
@@ -72,53 +73,43 @@ function getCurrentTrucks() {
 
 //creates a new google map
 function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: -34.397, 
+      lng: 150.644},
+    zoom: 13
+  });
 
-    map = new google.maps.Map(document.getElementById('map'), {
-        center: {
-            lat: -34.397,
-            lng: 150.644
-        },
-        zoom: 13
+  infoWindow = new google.maps.InfoWindow;
+
+   // HTML5 geolocation.
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var pos = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+
+      // infoWindow.setPosition(pos);
+      // infoWindow.setContent('Location found.');
+      // infoWindow.open(map);
+      map.setCenter(pos);
+    }, function() {
+      handleLocationError(true, infoWindow, map.getCenter());
     });
-
-    infoWindow = new google.maps.InfoWindow;
-
-    // HTML5 geolocation.
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-            };
-
-            // infoWindow.setPosition(pos);
-            // infoWindow.setContent('Location found.');
-            // infoWindow.open(map);
-            map.setCenter(pos);
-        }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
-        });
-    } else {
-        // Browser doesn't support Geolocation
-        handleLocationError(false, infoWindow, map.getCenter());
-    }
+  } else {
+    // Browser doesn't support Geolocation
+    handleLocationError(false, infoWindow, map.getCenter());
+  }
 } //Initmap endtag
 
-
-//adds currentFoodTrucks to google maps and list view on document
+//adds currentFoodTrucks to google maps
 function addTrucks() {
     $(".data").empty();
-    //logs our response
-    console.log(foodTrucks);
-    //logs filtered response
-    console.log(currentFoodTrucks);
     hideMarkers();
     createMarkers();
     addListView();
-
 }
 
-var markers = [];
 // var iconBase = 'coffee-truck.png'
 
 function createMarkers() {
@@ -135,21 +126,17 @@ function createMarkers() {
             //custom icon
             icon: 'assets/Images/van-orange.png'
         });
-
         // adds name to makers  
         attachTruckName(marker, currentFoodTrucks[i].applicant);
         markers.push(marker);
     }
 }
 
-
 function hideMarkers() {
-    for (var i = 0; i < markers.length; i++) {
+  for (var i = 0; i < markers.length; i++) {
         markers[i].setMap(null); //Remove the marker from the map
-    }
+      }
 }
-
-
 
 // populating our list view of food trucks
 function addListView() {
@@ -164,9 +151,7 @@ function addListView() {
         $(".data").append(tr);
     }
 }
-//addTrucks endtag
 
-//Event closure endtag.
 function attachTruckName(marker, array) {
     var infowindow = new google.maps.InfoWindow({
         content: array
@@ -187,9 +172,8 @@ function getCurrentUser() {
         return firebase.auth().currentUser.uid;
     }
 }
-//event listeners
-$(document).ready(function() {
 
+$(document).ready(function() {
     firebase.auth().createUserWithEmailAndPassword('sternj20@hotmail.com', 'password').catch(function(error) {
         // Handle Errors here.
         var errorCode = error.code;
@@ -204,100 +188,110 @@ $(document).ready(function() {
         // ...
     });
 
-
-    //add truck to favorites event listener
-    $(document).on("click", ".sendFavorite", function() {
-        var currentUser = getCurrentUser();
-        console.log(currentUser);
-        currentIndex = $(this).attr("data-index");
-        console.log(currentFoodTrucks[currentIndex].applicant);
-        console.log(currentFoodTrucks[currentIndex].optionaltext);
-        console.log(currentFoodTrucks[currentIndex].starttime + '-' + currentFoodTrucks[currentIndex].endtime);
-        console.log(currentFoodTrucks[currentIndex].location);
-
-        database.ref(currentUser).push({
-            name: currentFoodTrucks[currentIndex].applicant,
-            cuisines: currentFoodTrucks[currentIndex].optionaltext,
-            startTime: currentFoodTrucks[currentIndex].starttime,
-            endTime: currentFoodTrucks[currentIndex].endtime,
-            location: currentFoodTrucks[currentIndex].location,
-            uid: currentUser
-        });
+  //add truck to favorites event listener
+  $(document).on("click", ".sendFavorite", function(){
+    var currentUser = getCurrentUser();
+    currentIndex = $(this).attr("data-index");
+    database.ref(currentUser).push({
+      name:currentFoodTrucks[currentIndex].applicant,
+      cuisines: currentFoodTrucks[currentIndex].optionaltext,
+      startTime: currentFoodTrucks[currentIndex].starttime,
+      endTime: currentFoodTrucks[currentIndex].endtime,
+      location: currentFoodTrucks[currentIndex].location,
+      uid: currentUser
     });
 
-    //food search event listener
-    $(document).on("click", "#food-search", callFood); //change to food-input
+  });
 
-    //firebase google sign in button
-    $(document).on("click", "#gLogin", function() {
-        var provider = new firebase.auth.GoogleAuthProvider();
-        firebase.auth().signInWithPopup(provider).then(function(result) {
-            console.log(result);
-            // This gives you a Google Access Token. You can use it to access the Google API.
-            var token = result.credential.accessToken;
+  //food search event listener
+  $(document).on("click", "#food-search", callFood); //change to food-input
 
-            // ...
-        }).catch(function(error) {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            // The email of the user's account used.
-            var email = error.email;
-            // The firebase.auth.AuthCredential type that was used.
-            var credential = error.credential;
-            // ...
-        });
-    });
+  //firebase google sign in button
+  $(document).on("click", "#gLogin", function(){
+    var provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithPopup(provider).then(function(result) {
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    var token = result.credential.accessToken;
 
-    //show favorites event handler
-    $(".showFavorites").on("click", function() {
-
-        var openToday = 'maybe';
-        // var closeButton = $("<td>");
-        // closeButton.addClass('close').html('&times;');
-        $(".modal-content").empty();
-        // $(".params").append(closeButton);
-        var currentUser = getCurrentUser();
-        database.ref(currentUser).on("child_added", function(snapshot) {
-            var tr = $("<tr>");
-            tr.append("<td>" + snapshot.val().name + "</td>");
-            tr.append("<td>" + snapshot.val().cuisines + "</td>");
-            tr.append("<td>" + openToday + "</td>");
-            tr.append("<td>" + snapshot.val().location + "</td>");
-            $(".modal-content").append(tr);
-        });
-        modal.show();
-    });
+    // ...
+  }).catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // The email of the user's account used.
+    var email = error.email;
+    // The firebase.auth.AuthCredential type that was used.
+    var credential = error.credential;
+    // ...
+  });
 });
 
+  //show favorites event handler
+  $(".showFavorites").on("click", function(){
+      //empties the content of modal so that we don't add duplicates on multiple clicks of button
+    $(".modal-content").empty();
+    var openToday = 'maybe';
+    //stores the keys pushed to firebase for each favorite truck
+    var favoriteKeys = [];
+    currentUser = getCurrentUser();
+    //REMOVING ITEMS FROM DATABASE
+    //ITERATING OVER SNAPSHOT RESPONSE AND GETTING EACH UNIQUE KEY ITEM THAT IS ADDED WHEN WE PUSH TO FIREBASE OBJECT
+    var query = database.ref(currentUser).orderByKey();
+    query.once("value")
+    .then(function(snapshot) {
+      snapshot.forEach(function(childSnapshot) {
+      
+          // key is the unique key stored in firebase when we push onto our object
+          var key = childSnapshot.key;
+          favoriteKeys.push(key);
+          // childData will be the actual contents of the child
+          var childData = childSnapshot.val();
+          var removeBox = $("<td>");
+          removeBox.addClass('removeItem').html('&times;').attr("data-key", key);
+          removeBox.attr('data-index', index);
+          index++;
+          var tr = $("<tr>");
+          tr.addClass('favorites');
+          tr.append("<td>" + childData.name + "</td>");
+          tr.append("<td>" + childData.cuisines+ "</td>");
+          tr.append("<td>" + openToday+ "</td>");
+          tr.append("<td>" + childData.location + "</td>");
+          tr.append(removeBox);
+          $(".modal-content").append(tr);
+        });
+      });
+      modal.show();
+  });
+});
 
 //MODAL//
 
 var modal = $("#myModal");
 var btn = $("#myBtn");
-
-//opens modal when user clicks on button
-btn.on("click", function() {
-
-});
-
 //closes modal when user clicks on button
 $(document).on("click", ".close", function() {
     modal.hide();
 });
 
-//closes modal when user clicks anywhere outside of modal
-
-// window.onclick = function(event){
-//   if (event.target === modal[0]){
-//     modal.hide();
-//   }
-// };
+//removes item from users favorites when clicked
+$(document).on("click", ".removeItem", function(){
+  var favorites = $(".favorites");
+  var indexToRemove = ($(this).attr("data-index"));
+  if(favorites.length > 1){
+    favorites[indexToRemove].remove();
+  } else {
+    favorites[0].remove();
+  }
+  var dataKeyToDelete = ($(this).attr("data-key"));
+  var pathToDelete = currentUser  + '/' + dataKeyToDelete;
+  var itemToDelete = database.ref(pathToDelete ).remove();
+});
 
 
 //login validation
 
 firebase.auth().onAuthStateChanged(function(user) {
+
     if (user) {
         $(".loginInfo").text('you are logged in');
         // User is signed in.
@@ -315,3 +309,4 @@ firebase.auth().onAuthStateChanged(function(user) {
         // ...
     }
 });
+
