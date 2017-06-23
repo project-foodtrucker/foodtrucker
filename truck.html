@@ -11,7 +11,7 @@
   <!-- Compiled and minified MATERIALIZE CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
   <!-- Compiled and minified MATERIALIZE JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>        
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <link href="favicon.ico" rel="shortcut icon" type="image/x-icon"/>
@@ -26,12 +26,13 @@
 
 <!--Navbar-->
 <nav id="truckNav" class="teal container">
-    <div class="nav-wrapper container">
-      <a href="#" class="brand-logo">SF Foodtruckr</a>
+
+      <a class="brand-logo navHeader">SF Foodtruckr</a>
+      <div class="nav-wrapper container">
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a class="waves-effect waves-light btn showFavorites"><i class ="material-icons left">thumb_up</i>Show Favorites</a></li>
+        <li><a class="waves-effect waves-light btn showFavorites"><i class ="material-icons left">thumb_up</i>My Favorites</a></li>
         <!-- Dropdown Trigger -->
-        <li><a class='dropdown-button btn' href='#' data-activates='dropdown1'>Local Favs</a></li>
+        <li><a class='dropdown-button btn' href='#' data-activates='dropdown1'>Local</a></li>
         <!-- Dropdown Structure -->
         <ul id='dropdown1' class='dropdown-content'>
           <li><a href="https://offthegrid.com/" target = "_blank">Off the Grid</a></li>
@@ -40,9 +41,8 @@
           <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
           <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
         </ul>
-      
-        <li class = "loginInfo">
-        </li>
+
+        <li class = "loginInfo"></li>
         <button class = "waves-effect waves-light btn logOut">Log Out</a></button>
       </ul>
     </div>
