@@ -27,7 +27,7 @@
     <div class="nav-wrapper container">
       <a href="#" class="brand-logo">SF Foodtruckr</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="sass.html">My Favorites</a></li>
+        <li><a class="waves-effect waves-light btn showFavorites"><i class ="material-icons left">thumb_up</i>Show Favorites</a></li>
         <li><a href="badges.html">Off the Grid</a></li>
         <li><a href="collapsible.html">Log Out</a></li>
       </ul>
@@ -42,26 +42,8 @@
   <button class = "btn btn-primary" id="food-search" type="submit">Truck Search!</button>
 </div>
 
-
-
-     <!-- <div class="row">
-       <div class="input-field col s3">
-         <i class="material-icons prefix">search</i>
-         <input id="food-input" type="search" class="validate">
-         <label for="icon_prefix">Search for trucks</label>
-       </div>
-     </div> -->
-
-<!-- <input class="favoriteRetrieve" type="text" id="favCall"> -->
-<!-- <button class = "btn btn-success" id="food-search" type="submit">Show My Favorites</button>
->>>>>>> Stashed changes
-
-<!-- <div class="container"> -->
   <div class="row">
-    <!-- google maps -->
 
-  <!-- <div id="mapContainer" class="col-md-6"> -->
- 
   <div id="map" class="col s6"></div>
   <!-- </div> -->
 
@@ -99,15 +81,11 @@
     <table class="table table-hover">
       <thead>
         <tr>
-          <h1>Favorite Trucks</h1>
+          <h1>Favorite Trucks</h1><span class = 'close'>&times;</span>
         </tr>
+
       </thead>
       <tr class = "params">
-        <th>Truck Name</th>
-        <th>Cuisines</th>
-        <th>Open Today?</th>
-        <th>Location</th>
-        <th class = 'close'>'&times;'</th>
       </tr>
     </thead>
     <tbody class = "modal-content">

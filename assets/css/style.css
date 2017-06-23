@@ -237,7 +237,7 @@ td {
 }
 
 /* The Close Button */
-.close {
+.close, .removeItem {
     color: #aaa;
     float: right;
     font-size: 28px;
@@ -245,6 +245,8 @@ td {
 }
 
 .close:hover,
+.removeItem:hover,
+.removeItem:focus,
 .close:focus {
     color: black;
     text-decoration: none;
