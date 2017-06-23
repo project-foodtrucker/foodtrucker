@@ -174,20 +174,6 @@ function getCurrentUser() {
 }
 
 $(document).ready(function() {
-    firebase.auth().createUserWithEmailAndPassword('sternj20@hotmail.com', 'password').catch(function(error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // ...
-    });
-
-    firebase.auth().signInWithEmailAndPassword('sternj20@hotmail.com', 'password').catch(function(error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // ...
-    });
-
   //add truck to favorites event listener
   $(document).on("click", ".sendFavorite", function(){
     var currentUser = getCurrentUser();
@@ -291,9 +277,8 @@ $(document).on("click", ".removeItem", function(){
 //login validation
 
 firebase.auth().onAuthStateChanged(function(user) {
-
     if (user) {
-        $(".loginInfo").text('you are logged in');
+    
         // User is signed in.
         var displayName = user.displayName;
         var email = user.email;
@@ -302,11 +287,21 @@ firebase.auth().onAuthStateChanged(function(user) {
         var isAnonymous = user.isAnonymous;
         var uid = user.uid;
         var providerData = user.providerData;
+        $(".loginInfo").text('You are logged in as ' + email)
         // ...
     } else {
-        $(".loginInfo").text('you are not');
+        $(".loginInfo").text('You are not logged in ');
         // User is signed out.
         // ...
     }
 });
 
+//logout button
+
+$(".logOut").on("click", function(){
+  firebase.auth().signOut().then(function() {
+  // Sign-out successful.
+}).catch(function(error) {
+  // An error happened.
+});
+})
