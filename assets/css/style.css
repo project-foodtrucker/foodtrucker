@@ -2,6 +2,10 @@
   background-image: url(../Images/shortrib1-food-truck-BG.jpg);
 }
 
+#truckBody {
+  background-image: url(../Images/italian-street-food.jpg);
+}
+
 .introNav {
   width: 60%;
   height: 150px;
@@ -58,6 +62,10 @@
   text-align: center;
 }
 
+.sendFavorite {
+  font-size: 25px;
+}
+
 #gLogin {
 
 }
@@ -66,13 +74,28 @@
 
 }
 
+.truckTable {
+  overflow: auto;
+}
+
+.searchWrapper {
+  width: 300px;
+  position: relative;
+  left: 50px;
+}
+
+.searchField {
+  display: inline-block;
+}
+
 #map {
   height: 400px;
-  width: 40%;
+  width: 45%;
   border-style: solid;
-  border-color: blue;
-  margin-top: 100px;
-  margin-left: 10px;
+  border-color: teal;
+  border-width: 10px;
+  margin-top: 40px;
+  margin-left: 30px;
   padding: 5px;
   position: fixed !important;
  }
@@ -82,11 +105,16 @@
  }*/
 
 #truckNav {
-  vertical-align: middle;
+  height: 100px;
+  border-radius: 15px;
+  line-height: 100px;
+  width: 95%;
 }
 
 h1 {
   text-align: center;
+  color: white;
+  font-family: 'Josefin Sans', sans-serif;
 }
 
 #mapContainer {
@@ -94,11 +122,30 @@ h1 {
 }
 
 .sendFavorite {
-  margin-top: 5px;
+  margin: 0 auto;
+  margin: 10px;
 }
 
 #right {
+  position: relative;
+  top: 40px;
   float: right;
+  margin-right: 25px;
+  background-color: teal;
+  border-radius: 15px;
+}
+
+th {
+  text-align: center;
+}
+
+td {
+  display: inline-block;
+  margin: auto;
+}
+
+#foodInput {
+  width: 300px;
 }
 
 

@@ -1,54 +1,84 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SF FoodTruckr</title>
-  <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+<title>SF FoodTruckr</title>
 
-  <!--CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link href="https://fonts.googleapis.com/css?family=Ravi+Prakash" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Alegreya:900" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+
+        <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.css"/>
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <link href="favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+
   <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
 </head>
 
-<body>
+<body id="truckBody">
+
+
+<!--Navbar-->
+<nav id="truckNav" class="teal container">
+    <div class="nav-wrapper container">
+      <a href="#" class="brand-logo">SF Foodtruckr</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="sass.html">My Favorites</a></li>
+        <li><a href="badges.html">Off the Grid</a></li>
+        <li><a href="collapsible.html">Log Out</a></li>
+      </ul>
+    </div>
+  </nav>
   <!--Header-->
-<nav id="truckNav" class="nav navbar-default container-fluid">
-    <h1>SF foodTruckr</h1>
-      <p>Find your favorite food trucks!</p>
 
-        <input class="searchInput" type="text" id="food-input">
-        <button class = "btn btn-primary" id="food-search" type="submit">Truck Search!</button>
+<div class="searchWrapper">
+    <!-- <i class="prefix material-icons">search</i> -->
+    <input class="searchInput" type="text" id="food-input">
+    <br>
+  <button class = "btn btn-primary" id="food-search" type="submit">Truck Search!</button>
+</div>
 
-        <input class="favoriteRetrieve" type="text" id="favCall">
-        <button class = "btn btn-success showFavorites">Show My Favorites</button>
 
-</nav>
-<div class="container">
+
+     <!-- <div class="row">
+       <div class="input-field col s3">
+         <i class="material-icons prefix">search</i>
+         <input id="food-input" type="search" class="validate">
+         <label for="icon_prefix">Search for trucks</label>
+       </div>
+     </div> -->
+
+<!-- <input class="favoriteRetrieve" type="text" id="favCall"> -->
+<!-- <button class = "btn btn-success" id="food-search" type="submit">Show My Favorites</button>
+>>>>>>> Stashed changes
+
+<!-- <div class="container"> -->
   <div class="row">
     <!-- google maps -->
 
   <!-- <div id="mapContainer" class="col-md-6"> -->
-  <div id="map" class="col-md-6"></div>
+  <div id="map" class="col s6"></div>
   <!-- </div> -->
 
   <!-- list of food trucks -->
-  <div id="right" class="col-md-6">
+  <div id="right" class="col s6">
 
-  <table class="table table-hover trucks">
-    <thead class = "header">
+
+  <table class="table highlight truckTable">
+    <thead>
       <tr>
-        <h1>Trucks Near You</h1>
+        <h4 id="tableTitle">Trucks Near You</h1>
       </tr>
     </thead>
     <tr>
-      <th>Truck Name</th>
-      <th>Cuisines</th>
-      <th>Hours</th>
-      <th>Location</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody class = "data">
@@ -89,8 +119,8 @@
 
 
   <!-- Latest compiled and minified JavaScript -->
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script type="text/javascript"src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script type="text/javascript" src="js/materialize.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
   <script src="assets/javascript/app.js"></script>
