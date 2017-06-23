@@ -287,7 +287,7 @@ firebase.auth().onAuthStateChanged(function(user) {
         var isAnonymous = user.isAnonymous;
         var uid = user.uid;
         var providerData = user.providerData;
-        $(".loginInfo").text('You are logged in as ' + email)
+        $(".loginInfo").text('You are logged in as ' + email);
         // ...
     } else {
         $(".loginInfo").text('You are not logged in ');
@@ -304,4 +304,4 @@ $(".logOut").on("click", function(){
 }).catch(function(error) {
   // An error happened.
 });
-})
+});
