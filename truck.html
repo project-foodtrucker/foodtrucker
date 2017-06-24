@@ -15,64 +15,64 @@
   <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
-
 <body id="truckBody">
 
 <!--Navbar-->
 <nav id="truckNav" class="teal container">
-  <div class="nav-wrapper container">
-    <a href="#" class="brand-logo">SF Foodtruckr</a>
-    <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a class="waves-effect waves-light btn showFavorites"><i class ="material-icons left">thumb_up</i>Show Favorites</a></li>
-      <!-- Dropdown Trigger -->
-      <li><a class='dropdown-button btn' href='#' data-activates='dropdown1'>Local Favs</a></li>
-      <!-- Dropdown Structure -->
-      <ul id='dropdown1' class='dropdown-content'>
-        <li><a href="https://offthegrid.com/" target = "_blank">Off the Grid</a></li>
-        <li><a href="https://sparksocialsf.com/" target= "_blank">Spark Social</a></li>
-        <li><a href="#!">three</a></li>
-        <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
-        <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
-      </ul>
 
-      <li class = "loginInfo">
-      </li>
-      <button class = "waves-effect waves-light btn logOut">Log Out</a></button>
-    </ul>
-  </div>
-</nav>
-<!--Header-->
+      <a class="brand-logo navHeader" href = "index.html">SF Foodtruckr</a>
+   
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <a class="waves-effect waves-light btn showFavorites"><i class ="material-icons left">thumb_up</i>My Favorites</a>
+        <!-- Dropdown Trigger -->
+        <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Local</a>
+        <!-- Dropdown Structure -->
+        <ul id='dropdown1' class='dropdown-content'>
+          <li><a href="https://offthegrid.com/" target = "_blank">Off the Grid</a></li>
+          <li><a href="https://sparksocialsf.com/" target= "_blank">Spark Social</a></li>
+          <li><a href="#!">three</a></li>
+          <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
+          <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
+        </ul>
+        <span class = "loginInfo"></span>
+        <button class = "waves-effect waves-light btn logOut">Log Out</a></button>
+      </ul>
+    
+  </nav>
+  <!--Header-->
+
 <div class="searchWrapper">
-  <!-- <i class="prefix material-icons">search</i> -->
-  <input class="searchInput" type="text" id="food-input">
-  <br>
+    <!-- <i class="prefix material-icons">search</i> -->
+    <input class="searchInput" type="text" id="food-input">
+    <br>
   <button class = "btn btn-primary" id="food-search" type="submit">Truck Search!</button>
 </div>
 
-<div class="row">
+  <div class="row">
 
   <div id="map" class="col s6"></div>
+  <!-- </div> -->
 
   <!-- list of food trucks -->
   <div id="right" class="col s6">
 
 
-    <table class="table highlight truckTable">
-      <thead>
-        <tr>
-          <h4 id="tableTitle">Trucks Near You</h1>
-          </tr>
-        </thead>
-        <tr>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody class = "data">
-      </tbody>
-    </table>
+  <table class="table highlight truckTable">
+    <thead>
+      <tr>
+        <h4 id="tableTitle">Trucks Near You</h1>
+      </tr>
+    </thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody class = "data">
+  </tbody>
+  </table>
   </div>
 </div><!--Row endtag-->
 </div><!--container endtag-->

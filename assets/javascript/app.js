@@ -18,20 +18,22 @@ var currentTime;
 var truckStartTime;
 var truckEndTime;
 var currentIndex;
-
+//grabs our inputs from the create/login account modal to use for logging in and creating new users
 var newEmail;
 var newPassword;
+
 // Initialize Firebase
 var config = {
-    apiKey: "AIzaSyDAjERE4gqWGHZr6CaEubs9jmKWHj-pmTw",
-    authDomain: "food-trucker-84cb9.firebaseapp.com",
-    databaseURL: "https://food-trucker-84cb9.firebaseio.com",
-    projectId: "food-trucker-84cb9",
-    storageBucket: "",
-    messagingSenderId: "533340638498"
+  apiKey: "AIzaSyDAjERE4gqWGHZr6CaEubs9jmKWHj-pmTw",
+  authDomain: "food-trucker-84cb9.firebaseapp.com",
+  databaseURL: "https://food-trucker-84cb9.firebaseio.com",
+  projectId: "food-trucker-84cb9",
+  storageBucket: "",
+  messagingSenderId: "533340638498"
 };
 firebase.initializeApp(config);
 var database = firebase.database();
+
 //searches for food trucks based on type of food
 function callFood() {
     //empty response from previous ajax call
@@ -43,8 +45,8 @@ function callFood() {
     var queryURL = "https://data.sfgov.org/resource/bbb8-hzi6.json?$q=" + food;
 
     $.ajax({
-        url: queryURL,
-        method: "GET"
+      url: queryURL,
+      method: "GET"
 
     }).done(function(response) {
         //asigns response to global foodTrucks array
@@ -56,21 +58,21 @@ function callFood() {
 
         //clear input value
         $("#food-input").val(' ');
-    });
+      });
 } //callFood endtag
 
 
 //filters foodTrucks array by current date and time
 function getCurrentTrucks() {
-    var time = moment();
-    currentFoodTrucks = [];
-    for (var i = 0; i < foodTrucks.length; i++) {
-        truckStartTime = moment(foodTrucks[i].start24, hourFormat);
-        truckEndTime = moment(foodTrucks[i].end24, hourFormat);
-        if (time.isBetween(truckStartTime, truckEndTime) && time.format('dddd') === foodTrucks[i].dayofweekstr) {
-            currentFoodTrucks.push(foodTrucks[i]);
-        }
+  var time = moment();
+  currentFoodTrucks = [];
+  for (var i = 0; i < foodTrucks.length; i++) {
+    truckStartTime = moment(foodTrucks[i].start24, hourFormat);
+    truckEndTime = moment(foodTrucks[i].end24, hourFormat);
+    if (time.isBetween(truckStartTime, truckEndTime) && time.format('dddd') === foodTrucks[i].dayofweekstr) {
+      currentFoodTrucks.push(foodTrucks[i]);
     }
+  }
 }
 
 //creates a new google map
@@ -78,22 +80,18 @@ function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: -34.397, 
       lng: 150.644},
-    zoom: 13
-  });
+      zoom: 13
+    });
 
   infoWindow = new google.maps.InfoWindow;
 
    // HTML5 geolocation.
-  if (navigator.geolocation) {
+   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
       var pos = {
         lat: position.coords.latitude,
         lng: position.coords.longitude
       };
-
-      // infoWindow.setPosition(pos);
-      // infoWindow.setContent('Location found.');
-      // infoWindow.open(map);
       map.setCenter(pos);
     }, function() {
       handleLocationError(true, infoWindow, map.getCenter());
@@ -106,10 +104,10 @@ function initMap() {
 
 //adds currentFoodTrucks to google maps
 function addTrucks() {
-    $(".data").empty();
-    hideMarkers();
-    createMarkers();
-    addListView();
+  $(".data").empty();
+  hideMarkers();
+  createMarkers();
+  addListView();
 }
 
 // var iconBase = 'coffee-truck.png'
@@ -127,52 +125,52 @@ function createMarkers() {
             map: map,
             //custom icon
             icon: 'assets/Images/van-orange.png'
-        });
+          });
         // adds name to makers  
         attachTruckName(marker, currentFoodTrucks[i].applicant);
         markers.push(marker);
+      }
     }
-}
 
-function hideMarkers() {
-  for (var i = 0; i < markers.length; i++) {
+    function hideMarkers() {
+      for (var i = 0; i < markers.length; i++) {
         markers[i].setMap(null); //Remove the marker from the map
       }
-}
+    }
 
 // populating our list view of food trucks
 function addListView() {
-    for (i = 0; i < currentFoodTrucks.length; i++) {
-        var tr = $("<tr>");
-        var truckName = $("<td>").text(currentFoodTrucks[i].applicant);
-        var cuisines = $("<td>").text(currentFoodTrucks[i].optionaltext);
-        var hours = $("<td>").text(currentFoodTrucks[i].starttime + '-' + currentFoodTrucks[i].endtime);
-        var truckLocation = $("<td>").text(currentFoodTrucks[i].location);
-        var addFavorite = $("<button>").text('+').addClass('sendFavorite btn-floating btn-large waves-effect waves-light lightblue').attr("data-index", i);
-        tr.append(truckName).append(cuisines).append(hours).append(truckLocation).append(addFavorite);
-        $(".data").append(tr);
-    }
+  for (i = 0; i < currentFoodTrucks.length; i++) {
+    var tr = $("<tr>");
+    var truckName = $("<td>").text(currentFoodTrucks[i].applicant);
+    var cuisines = $("<td>").text(currentFoodTrucks[i].optionaltext);
+    var hours = $("<td>").text(currentFoodTrucks[i].starttime + '-' + currentFoodTrucks[i].endtime);
+    var truckLocation = $("<td>").text(currentFoodTrucks[i].location);
+    var addFavorite = $("<button>").text('+').addClass('sendFavorite btn-floating btn-large waves-effect waves-light lightblue').attr("data-index", i);
+    tr.append(truckName).append(cuisines).append(hours).append(truckLocation).append(addFavorite);
+    $(".data").append(tr);
+  }
 }
 
 function attachTruckName(marker, array) {
-    var infowindow = new google.maps.InfoWindow({
-        content: array
-    });
+  var infowindow = new google.maps.InfoWindow({
+    content: array
+  });
 
-    marker.addListener('mouseover', function() {
-        infowindow.open(marker.get("map"), marker);
-    });
+  marker.addListener('mouseover', function() {
+    infowindow.open(marker.get("map"), marker);
+  });
 
-    marker.addListener('mouseout', function() {
-        infowindow.close(marker.get("map"), marker);
-    });
+  marker.addListener('mouseout', function() {
+    infowindow.close(marker.get("map"), marker);
+  });
 } //attachTruckName endtag
 
 //gets active user's email
 function getCurrentUser() {
-    if (firebase.auth().currentUser.uid) {
-        return firebase.auth().currentUser.uid;
-    }
+  if (firebase.auth().currentUser.uid) {
+    return firebase.auth().currentUser.uid;
+  }
 }
 
 $(document).ready(function() {
@@ -202,7 +200,7 @@ $(document).ready(function() {
     firebase.auth().signInWithPopup(provider).then(function(result) {
     // This gives you a Google Access Token. You can use it to access the Google API.
     var token = result.credential.accessToken;
-
+    window.open("truck.html", "_self");
     // ...
   }).catch(function(error) {
     // Handle Errors here.
@@ -214,13 +212,14 @@ $(document).ready(function() {
     var credential = error.credential;
     // ...
   });
+
 });
 
   //show favorites event handler
-$(".showFavorites").on("click", renderFavorites);
+  $(".showFavorites").on("click", renderFavorites);
 
 
-function renderFavorites(){
+  function renderFavorites(){
     //empties the content of modal so that we don't add duplicates on multiple clicks of button
     $(".modal-content").empty();
     var openToday = 'maybe';
@@ -251,16 +250,16 @@ function renderFavorites(){
           tr.append(removeBox);
           $(".modal-content").append(tr);
         });
-      });
-      modal.show();
-}
+    });
+    modal.show();
+  }
 //MODAL//
 
 var modal = $("#myModal");
 var btn = $("#myBtn");
 //closes modal when user clicks on button
 $(document).on("click", ".close", function() {
-    modal.hide();
+  modal.hide();
 });
 
 //removes item from users favorites when clicked
@@ -281,8 +280,7 @@ $(document).on("click", ".removeItem", function(){
 //login validation
 
 firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-    
+  if (user) {
         // User is signed in.
         var displayName = user.displayName;
         var email = user.email;
@@ -293,59 +291,89 @@ firebase.auth().onAuthStateChanged(function(user) {
         var providerData = user.providerData;
         $(".loginInfo").text('You are logged in as ' + email);
         // ...
-    } else {
+      } else {
         $(".loginInfo").text('You are not logged in ');
         // User is signed out.
         // ...
-    }
-});
+      }
+    });
 
 //logout button
-
 $(".logOut").on("click", function(){
   firebase.auth().signOut().then(function() {
   // Sign-out successful.
-  }).catch(function(error) {
+    }).catch(function(error) {
   // An error happened.
-});
+    });
 });
 });
 
-//create new account button
-
-$(".btnCreate").on("click", function(){
-
+//create new account and login with sf food trucker button
+//gets user inputs in create new account and login modal
+function getNewUserInfo(){
   newEmail = $(".newEmail").val().trim();
   newPassword = $(".newPassword").val().trim();
-  console.log(newEmail);
-  console.log(newPassword);
-  firebase.auth().createUserWithEmailAndPassword(newEmail, newPassword).catch(function(error) {
-  // Handle Errors here.
+  $(".newPassword").val('');
+  $(".newEmail").val('');
+}
 
+//creates new account with users inputs
+function create(newEmail, newPassword){
+ firebase.auth().createUserWithEmailAndPassword(newEmail, newPassword).catch(function(error) {
+  // Handle Errors here.
   var errorCode = error.code;
   var errorMessage = error.message;
   // ...
+});
+ //automatically logs in with the recently created account
+ login(newEmail, newPassword);
+}
 
-  });
-  
+//logs into firebase with user inputs
+function login(newEmail, newPassword){
+ firebase.auth().signInWithEmailAndPassword(newEmail, newPassword).catch(function(error) {
+  console.log(error);
+  // Handle Errors here.
+  var errorCode = error.code;
+  var errorMessage = error.message;
   // ...
 });
+ //shows us the truck page after a second, which gives enough time for the current active user to be updated
+ setTimeout(showTruckPage, 1000);
+}
 
+//shows the truck page
+function showTruckPage(){
+  //if there is a user logged in
+  if (firebase.auth().currentUser){
+    window.open("truck.html", "_self");
+  } 
+}
 
-$(".btnLogin").on("click", function(){
-   newEmail = $(".newEmail").val().trim();
-  newPassword = $(".newPassword").val().trim();
+//when login with sf food trucker button is clicked, automatically logs out previous user
+$(".localLogin").on("click", function(){
+  firebase.auth().signOut().then(function() {
+  // Sign-out successful.
+    }).catch(function(error) {
+  // An error happened.
+    });
+});
+
+//when users clicks create new account button
+$(".btnCreate").on("click", function(){
+  //gets inputs from fields in modal
+  getNewUserInfo();
+  //passes inputs as arguments into create new account function
+  create(newEmail, newPassword);
+  //and login function
   login(newEmail, newPassword);
 });
 
-
-function login(newEmail, newPassword){
- firebase.auth().signInWithEmailAndPassword(newEmail, newPassword).catch(function(error) {
-    console.log(error)
-  // Handle Errors here.
-  var errorCode = error.code;
-  var errorMessage = error.message;
-  // ...
+//when user clicks login button
+$(".btnLogin").on("click", function(){
+  //gets inputs from fields in modal
+  getNewUserInfo();
+  //passes inputs as arguments into login function
+  login(newEmail, newPassword);
 });
 
-}
