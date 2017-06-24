@@ -264,10 +264,11 @@ $(document).on("click", ".close", function() {
 
 //removes item from users favorites when clicked
 $(document).on("click", ".removeItem", function(){
-  var favorites = $(".favorites");
+
+  var favorites = $(".favoriteTrucks");
   var indexToRemove = ($(this).attr("data-index"));
-  if(favorites.length > 1){
-    favorites[indexToRemove].remove();
+  if(favorites.find('tr').length > 1){
+    favorites.find('tr')[indexToRemove].remove();
   } else {
     favorites[0].remove();
   }
@@ -376,4 +377,3 @@ $(".btnLogin").on("click", function(){
   //passes inputs as arguments into login function
   login(newEmail, newPassword);
 });
-
