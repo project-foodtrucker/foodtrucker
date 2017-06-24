@@ -23,13 +23,15 @@
 <!--Navbar-->
 <nav id="truckNav" class="teal container">
     <!-- <div class="nav-wrapper container"> -->
-      <a class="brand-logo">SF Foodtruckr</a>
+      <a class="brand-logo" href = "index.html">SF Foodtruckr</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li>  <div class="search-wrapper card">
             <input class="searchInput" type="search" id="food-input">
             <a id="food-search" class="waves-effect waves-light btn"><i id="searchIcon" class="material-icons">search</i></a>
           </div></li>
-        <li><a class="waves-effect waves-light btn showFavorites"><i class ="material-icons left">thumb_up</i>My Favorites</a></li>
+
+        <button data-target="modal2" class="btn modal-trigger showFavorites">My Favorites</button>
+      
         <!-- Dropdown Trigger -->
         <li><a class='dropdown-button btn' href='#' data-activates='dropdown1'>Local</a></li>
         <!-- Dropdown Structure -->
@@ -85,21 +87,16 @@
 
 <!--MODAL-->
 <!-- The Modal -->
-<div id="myModal" class="modal">
-
-  <!-- Modal content -->
-  <div class="modal-window">
+<div id="modal2" class="modal">
+  <div class="modal-content favoriteTrucks">
     <table class="table table-hover">
       <thead>
         <tr>
-          <h1>Favorite Trucks</h1><span class = 'close'>&times;</span>
+          <h1>Favorite Trucks</h1>
         </tr>
 
       </thead>
-      <tr class = "params">
-      </tr>
-    </thead>
-    <tbody class = "modal-content">
+    <tbody class = "modal-favorites">
     </tbody>
   </div>
 </div>

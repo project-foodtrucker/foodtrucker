@@ -188,7 +188,7 @@ $(document).ready(function() {
       location: currentFoodTrucks[currentIndex].location,
       uid: currentUser
     });
-
+renderFavorites();
   });
 
   //food search event listener
@@ -251,12 +251,8 @@ $(document).ready(function() {
           $(".modal-content").append(tr);
         });
     });
-    modal.show();
   }
 //MODAL//
-
-var modal = $("#myModal");
-var btn = $("#myBtn");
 //closes modal when user clicks on button
 $(document).on("click", ".close", function() {
   modal.hide();
@@ -264,12 +260,13 @@ $(document).on("click", ".close", function() {
 
 //removes item from users favorites when clicked
 $(document).on("click", ".removeItem", function(){
-  var favorites = $(".favorites");
+
+  var favorites = $(".favoriteTrucks");
   var indexToRemove = ($(this).attr("data-index"));
-  if(favorites.length > 1){
-    favorites[indexToRemove].remove();
+  if(favorites.find('tr').length > 1){
+    favorites.find('tr')[indexToRemove].remove();
   } else {
-    favorites[0].remove();
+    favorites.empty();
   }
   var dataKeyToDelete = ($(this).attr("data-key"));
   var pathToDelete = currentUser  + '/' + dataKeyToDelete;
@@ -376,4 +373,3 @@ $(".btnLogin").on("click", function(){
   //passes inputs as arguments into login function
   login(newEmail, newPassword);
 });
-
