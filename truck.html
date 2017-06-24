@@ -26,10 +26,13 @@
 
 <!--Navbar-->
 <nav id="truckNav" class="teal container">
-
-      <a class="brand-logo navHeader">SF Foodtruckr</a>
-      <div class="nav-wrapper container">
+    <!-- <div class="nav-wrapper container"> -->
+      <a href="#" class="brand-logo">SF Foodtruckr</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li>  <div class="search-wrapper card">
+            <input class="searchInput" type="search" id="food-input">
+            <a id="food-search" class="waves-effect waves-light btn"><i id="searchIcon" class="material-icons">search</i></a>
+          </div></li>
         <li><a class="waves-effect waves-light btn showFavorites"><i class ="material-icons left">thumb_up</i>My Favorites</a></li>
         <!-- Dropdown Trigger -->
         <li><a class='dropdown-button btn' href='#' data-activates='dropdown1'>Local</a></li>
@@ -45,16 +48,14 @@
         <li class = "loginInfo"></li>
         <button class = "waves-effect waves-light btn logOut">Log Out</a></button>
       </ul>
-    </div>
+    <!-- </div> -->
   </nav>
   <!--Header-->
 
-<div class="searchWrapper">
-    <!-- <i class="prefix material-icons">search</i> -->
-    <input class="searchInput" type="text" id="food-input">
-    <br>
-  <button class = "btn btn-primary" id="food-search" type="submit">Truck Search!</button>
-</div>
+  <!-- <div class="search-wrapper card">
+    <input class="searchInput" type="search" id="food-input">
+    <a id="food-search" class="waves-effect waves-light btn"><i id="searchIcon" class="material-icons">search</i></a>
+  </div> -->
 
   <div class="row">
 
