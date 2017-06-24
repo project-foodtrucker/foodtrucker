@@ -1,3 +1,5 @@
+
+
 .introBody {
   /*background-image: url(../Images/shortrib1-food-truck-BG.jpg);*/
 }
@@ -21,12 +23,6 @@
   margin-left: 55px;
   font-family: 'Baloo Bhaina', cursive;
   font-size: 80px;
-}
-
-.iNavIcon {
-  position: relative;
-  left: 15px;
-  top: 10px;
 }
 
 .iconDiv {
@@ -101,22 +97,49 @@ margin-right: 200px;
   overflow: auto;
 }
 
-.searchWrapper {
+.search-wrapper {
   width: 300px;
-  position: relative;
-  left: 50px;
+  /*position: relative;
+  left: 340px;
+  bottom: 80px;*/
+  background-color: lightgrey;
 }
 
-.searchField {
-  display: inline-block;
+.card {
+  height: 46px;
+  position: relative;
+  top: 20px;
 }
+
+#searchIcon {
+position: relative;
+right: 9px;
+}
+
+#food-search {
+  position: relative;
+  bottom: 128px;
+  left: 222px;
+  width: 60px;
+}
+
+#food-input {
+  position: relative;
+  bottom: 29px;
+  left: 5px;
+  width: 290px;
+}
+
+/*.searchField {
+  display: inline-block;
+}*/
 
 #map {
   height: 400px;
   width: 45%;
   border-style: solid;
   border-color: teal;
-  border-width: 10px;
+  border-width: 3px;
   margin-top: 40px;
   margin-left: 30px;
   padding: 5px;
@@ -175,9 +198,6 @@ td {
   width: 300px;
 }
 
-/*modal*/
-
-
 
 /* Modal Content/Box */
 .modal-content, .modal-window {
@@ -216,7 +236,7 @@ td {
 .loginLogo{
   width:100px;
   position:absolute;
-  top:0;
+  top:30px;
   right:50px;
   
 }
