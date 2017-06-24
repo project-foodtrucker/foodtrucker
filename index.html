@@ -1,52 +1,160 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SF FoodTruckr</title>
-  <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
-  <!--CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <!-- <link href="https://fonts.googleapis.com/css?family=Ravi+Prakash" rel="stylesheet"> -->
-  <!-- <link href="https://fonts.googleapis.com/css?family=Alegreya:900" rel="stylesheet"> -->
-  <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <!-- Compiled and minified MATERIALIZE CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/css/materialize.min.css">
+  <!-- Compiled and minified MATERIALIZE JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/js/materialize.min.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="favicon.ico" rel="shortcut icon" type="image/x-icon"/>
   <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 
+
+
+
+
 <body class="introBody">
 
-  <nav class="introNav navbar-default">
-    <h1 class="iHeaderText">SF FoodTruckr</h1>
-    <div class="iconDiv">
-      <img class="iNavIcon" src="assets/Images/food-truck.png" alt="truckicon">
-    </div>
-  </nav>
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+  <div class="modal-content">
+   <main>
+    <center>
+      <h5 class="indigo-text">Login or create an account</h5>
+      <img class="responsive-img circle loginLogo" src="https://univofhouston.campusdish.com/-/media/Images/Aramark/Higher-Education/SouthWest/Houston/Location/The_Ultimate_Food_Truck_Logo.jpg?h=200&w=200&la=en&hash=9D5A106B09BB750E602E678DA0C45AA3EA1F3319" />
+    
+      <div class="container">
+        <div class="z-depth-1 grey lighten-4 row addNewLogin">
+            <div class='row'>
+              <div class='input-field col s12'>
+                <input class='validate newEmail' type='email' name='email' id='email' />
+                <label for='email'>Enter your email</label>
+              </div>
+            </div>
 
-<div class="loginDiv">
+            <div class='row'>
+              <div class='input-field col s12'>
+                <input class='validate newPassword' type='password' name='password' id='password' />
+                <label for='password'>Enter password (6 or more letters)</label>
+              </div>
+            </div>
 
-  <button id = "gLogin" class = "loginButton btn btn-primary">Continue with Google</button>
-
-  <br>
-
-  <button id = "noLogin" class = "loginButton btn btn-danger">
-    <a href="truck.html">Show me Foodtrucks!</a>
-  </button>
-
+            <br />
+            <center>
+              <div class='row'>
+                <button  name='btn_login' class='col s5 btn btn-large waves-effect indigo btnLogin'>Login</button>
+                <button  name='btn_create' class='col s5 offset-s2 btn btn-large waves-effect indigo btnCreate'>Create New Account</button>
+              </div>
+            </center>
+          </form>
+        </div>
+      </div>
+    </center>
+  </main>
+  </div>
 </div>
 
 
-  <!-- Latest compiled and minified JavaScript -->
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
-  <script src="assets/javascript/app.js"></script>
-  <script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjYcWNC726GLIAIvAAqO6pZGvmo9W-Hg4">
+  <div class="upperLanding">
+    <nav id="landingPageNav">
+      <div class="nav-wrapper">
+        <a href="#" class="brand-logo center"><h1>SF FoodTruckr</h1></a>
+        <ul id="nav-mobile" class="left hide-on-med-and-down">
+          <!-- <li><a href="sass.html">Sass</a></li>
+          <li><a href="badges.html">Components</a></li>
+          <li><a href="collapsible.html">JavaScript</a></li> -->
+        </ul>
+      </div>
+    </nav>
+
+    <div class="row loginDiv">
+      <div class="col s4">
+        <a id="gLogin" class="waves-effect waves-light btn">Continue with Google</a>
+      </div>
+
+      <div class="col s4">
+        <button data-target="modal1" class="btn modal-trigger localLogin">Login With SF Foodtruckr</button>
+      </div>
+
+      <div class="col s4">
+        <a href="truck.html" id="noLogin" class="waves-effect waves-light btn">show me foodtrucks!</a>
+      </div>
+    </div>
+  </div>
 
 
-</script>
-<script src="https://apis.google.com/js/platform.js" async defer></script>
- <!--google platform library-->
-</body>
+
+  <div class="lowerLanding">
+    <!------------------------------------------------------------------------>
+    <div class="row">
+     <div class="col s4">
+       <div class="card" id="">
+         <div class="card-image">
+           <img src="">
+           <!-- <span class="card-title">Card Title</span> -->
+         </div>
+         <div class="card-content">
+           <p>I am a very simple card. I am good at containing small bits of information.
+             I am convenient because I require little markup to use effectively.</p>
+           </div>
+           <div class="card-action">
+             <a href="#">This is a link</a>
+           </div>
+         </div>
+       </div>
+       <!------------------------------------------------------------------------>
+       <div class="col s4">
+         <div class="card" id="">
+           <div class="card-image">
+             <img src="">
+             <!-- <span class="card-title">Card Title</span> -->
+           </div>
+           <div class="card-content">
+             <p>I am a very simple card. I am good at containing small bits of information.
+               I am convenient because I require little markup to use effectively.</p>
+             </div>
+             <div class="card-action">
+               <a href="#">This is a link</a>
+             </div>
+           </div>
+         </div>
+         <!------------------------------------------------------------------------>
+         <div class="col s4">
+          <div class="card" id="">
+            <div class="card-image">
+              <img src="">
+              <!-- <span class="card-title">Card Title</span> -->
+            </div>
+            <div class="card-content">
+              <p>I am a very simple card. I am good at containing small bits of information.
+                I am convenient because I require little markup to use effectively.</p>
+              </div>
+              <div class="card-action">
+                <a href="#">This is a link</a>
+              </div>
+            </div>
+          </div>
+          <!------------------------------------------------------------------------>
+
+        </div> <!--Cardrow endtag-->
+
+      </div> <!--lowerLanding endtag-->
+
+
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+      <script src="assets/javascript/app.js"></script>
+      <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjYcWNC726GLIAIvAAqO6pZGvmo9W-Hg4">
+    </script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <!--google platform library-->
+  </body>

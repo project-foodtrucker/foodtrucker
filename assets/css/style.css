@@ -1,5 +1,11 @@
+
+
 .introBody {
-  background-image: url(../Images/shortrib1-food-truck-BG.jpg);
+  /*background-image: url(../Images/shortrib1-food-truck-BG.jpg);*/
+}
+
+#truckBody {
+  background-image: url(../Images/italian-street-food.jpg);
 }
 
 .introNav {
@@ -19,12 +25,6 @@
   font-size: 80px;
 }
 
-.iNavIcon {
-  position: relative;
-  left: 15px;
-  top: 10px;
-}
-
 .iconDiv {
   float: right;
   /*margin-right: 40px;*/
@@ -37,42 +37,115 @@
   border-radius: 75px;
 }
 
-.nav {
-  height: 100px;
-  width: 95%;
+#landingPageNav {
+  height: 150px;
+  width: 90%;
+  border-radius: 80px;
   margin: 0 auto;
-  color: maroon;
+  background-color: teal;
+  position: relative;
+    top: 20px;
+}
+
+.upperLanding {
+  height: 350px;
+  /*background-color: white;*/
+  background-image: url(../Images/fries.jpg);
+
+}
+
+.lowerLanding {
+  height: 350px;
+  background-color: teal;
+
 }
 
 .loginDiv {
   text-align: center;
-  margin-top: 20px;
-  width: 400px;
-  margin: 0 auto;
+  margin-top: 80px;
 }
 
 .loginButton {
-  margin: 10px;
-  width: 300px;
-  height: 40px;
   text-align: center;
 }
 
-#gLogin {
+.logOut{
+  margin-left:20px;
+}
+.sendFavorite {
+  font-size: 25px;
+}
 
+#gLogin {
+margin-left: 200px;
 }
 
 #noLogin {
-
+margin-right: 200px;
 }
+
+.navHeader {
+  margin-left: 20px;
+}
+
+.nav-wrapper {
+  text-align: center;
+  line-height: 100px;
+}
+
+.truckTable {
+  overflow: auto;
+}
+
+.nav-mobile {
+  margin-right: 10px;
+}
+
+.search-wrapper {
+  width: 300px;
+  /*position: relative;
+  left: 340px;
+  bottom: 80px;*/
+  background-color: lightgrey;
+}
+
+.card {
+  height: 46px;
+  position: relative;
+  top: 20px;
+}
+
+#searchIcon {
+position: relative;
+right: 9px;
+}
+
+#food-search {
+  position: relative;
+  bottom: 128px;
+  left: 222px;
+  width: 60px;
+}
+
+#food-input {
+  position: relative;
+  bottom: 29px;
+  left: 5px;
+  width: 290px;
+}
+
+/*.searchField {
+  display: inline-block;
+}*/
 
 #map {
   height: 400px;
-  width: 40%;
+  width: 48%;
   border-style: solid;
-  border-color: blue;
+  border-color: teal;
+  border-width: 3px;
   margin-top: 40px;
-  margin-left: 10px;
+  margin-left: 60px;
   padding: 5px;
   position: fixed !important;
  }
@@ -82,11 +155,17 @@
  }*/
 
 #truckNav {
-  vertical-align: middle;
+  height: 138px;
+  line-height: 100px;
+  width: 100%;
+  padding: 20px;
+  margin-top: 10px;
 }
 
-#tableTitle {
+h1 {
   text-align: center;
+  color: white;
+  font-family: 'Josefin Sans', sans-serif;
 }
 
 #mapContainer {
@@ -94,105 +173,52 @@
 }
 
 .sendFavorite {
-  margin-top: 5px;
+  margin: 0 auto;
+  margin: 10px;
 }
 
 #right {
+  position: relative;
+  right: 61px;
+  top: 40px;
   float: right;
+  width: 572px;
+  /* margin-right: 25px; */
+  background-color: teal;
+  /* border-radius: 15px; */
 }
 
-
- @media screen and (max-width: 1200px) {
-
-   .iHeaderText {
-     line-height: 164px;
-     /*text-align: left;*/
-     margin-left: 55px;
-     font-family: 'Baloo Bhaina', cursive;
-     font-size: 60px;
-   }
-
-   .introNav {
-     width: 60%;
-     height: 150px;
-     margin: 0 auto;
-     background-color: maroon;
-     color: white;
-     border-radius: 75px;
-   }
-
- }
-
- @media screen and (max-width: 980px) {
-
-   .iHeaderText {
-     line-height: 164px;
-     /*text-align: left;*/
-     margin-left: 55px;
-     font-family: 'Baloo Bhaina', cursive;
-     font-size: 40px;
-   }
-
-   .introNav {
-     width: 60%;
-     height: 150px;
-     margin: 0 auto;
-     background-color: maroon;
-     color: white;
-     border-radius: 75px;
-   }
-
-   .iNavIcon {
-     position: relative;
-     left: 15px;
-     top: 10px;
-    height: 40px;
-    width: 40px;
-   }
-
-   .iconDiv {
-     float: right;
-     /*margin-right: 40px;*/
-     position: relative;
-     bottom: 146px;
-     right: 40px;
-     background-color: white;
-     height: 60px;
-     width: 60px;
-     border-radius: 75px;
-   }
-
- }
-
-
-/*modal*/
-
-/* The Modal (background) */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    float:right;
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow:auto;
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+#nav-mobile {
+  margin-top: 0px;
 }
+
+th {
+  text-align: center;
+}
+
+td {
+  display: inline-block;
+  margin: auto;
+}
+
+li {
+  margin-right: 10px;
+}
+
+#foodInput {
+  width: 300px;
+}
+
 
 /* Modal Content/Box */
-.modal-content, .modal-window {
+. modal-content, .modal-window {
     background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
     border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    width: 100%; /* Could be more or less, depending on screen size */
 }
 
 /* The Close Button */
-.close {
+.close, .removeItem {
     color: #aaa;
     float: right;
     font-size: 28px;
@@ -200,8 +226,30 @@
 }
 
 .close:hover,
+.removeItem:hover,
+.removeItem:focus,
 .close:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
 }
+
+.right{
+  margin-top:30px;
+}
+
+.addNewLogin{
+  display: inline-block;
+  padding: 32px 48px 0px 48px;
+  border: 1px solid #EEE;"
+}
+
+.loginLogo{
+  width:100px;
+  position:absolute;
+  top:30px;
+  right:50px;
+}
+
+.favoriteTrucks{
+  height:500px;
