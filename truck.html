@@ -15,17 +15,23 @@
   <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
+
+
 <body id="truckBody">
+
 
 <!--Navbar-->
 <nav id="truckNav" class="teal container">
-
-      <a class="brand-logo navHeader" href = "index.html">SF Foodtruckr</a>
-   
+    <!-- <div class="nav-wrapper container"> -->
+      <a href="index.html" class="brand-logo">SF Foodtruckr</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <a class="waves-effect waves-light btn showFavorites"><i class ="material-icons left">thumb_up</i>My Favorites</a>
+        <li>  <div class="search-wrapper card">
+            <input class="searchInput" type="search" id="food-input">
+            <a id="food-search" class="waves-effect waves-light btn"><i id="searchIcon" class="material-icons">search</i></a>
+          </div></li>
+        <li><a class="waves-effect waves-light btn showFavorites"><i class ="material-icons left">thumb_up</i>My Favorites</a></li>
         <!-- Dropdown Trigger -->
-        <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Local</a>
+        <li><a class='dropdown-button btn' href='#' data-activates='dropdown1'>Local</a></li>
         <!-- Dropdown Structure -->
         <ul id='dropdown1' class='dropdown-content'>
           <li><a href="https://offthegrid.com/" target = "_blank">Off the Grid</a></li>
@@ -34,19 +40,18 @@
           <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
           <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
         </ul>
-        <span class = "loginInfo"></span>
+
+        <li class = "loginInfo"></li>
         <button class = "waves-effect waves-light btn logOut">Log Out</a></button>
       </ul>
-    
+    <!-- </div> -->
   </nav>
   <!--Header-->
 
-<div class="searchWrapper">
-    <!-- <i class="prefix material-icons">search</i> -->
-    <input class="searchInput" type="text" id="food-input">
-    <br>
-  <button class = "btn btn-primary" id="food-search" type="submit">Truck Search!</button>
-</div>
+  <!-- <div class="search-wrapper card">
+    <input class="searchInput" type="search" id="food-input">
+    <a id="food-search" class="waves-effect waves-light btn"><i id="searchIcon" class="material-icons">search</i></a>
+  </div> -->
 
   <div class="row">
 
@@ -102,12 +107,12 @@
 
 
 
-<!-- Latest compiled and minified JavaScript -->
+  <!-- Latest compiled and minified JavaScript -->
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
-<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
-<script src="assets/javascript/app.js"></script>
-<script async defer
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjYcWNC726GLIAIvAAqO6pZGvmo9W-Hg4&callback=initMap">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+  <script src="assets/javascript/app.js"></script>
+  <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjYcWNC726GLIAIvAAqO6pZGvmo9W-Hg4&callback=initMap">
 </script>
 </body>
