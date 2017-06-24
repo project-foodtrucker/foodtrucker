@@ -1,7 +1,7 @@
 
 
 .introBody {
-  /*background-image: url(../Images/shortrib1-food-truck-BG.jpg);*/
+  background-image: url(../Images/street-food-burger.jpg);
 }
 
 #truckBody {
@@ -48,9 +48,8 @@
 }
 
 .upperLanding {
-  height: 350px;
   /*background-color: white;*/
-  background-image: url(../Images/fries.jpg);
+  /*background-image: url(../Images/fries.jpg);*/
 
 }
 
@@ -78,10 +77,16 @@
 
 #gLogin {
 margin-left: 200px;
+font-size: 11px;
 }
 
 #noLogin {
 margin-right: 200px;
+font-size: 11px;
+}
+
+.localLogin {
+  font-size: 11px;
 }
 
 .navHeader {
@@ -136,6 +141,18 @@ right: 9px;
   width: 290px;
 }
 
+.searchInput {
+  color: black;
+}
+
+#tableTitle {
+  color: wheat;
+  font-family: 'Open Sans', sans-serif;
+
+}
+
+
+
 /*.searchField {
   display: inline-block;
 }*/
@@ -168,6 +185,9 @@ h1 {
   text-align: center;
   color: white;
   font-family: 'Josefin Sans', sans-serif;
+  font-size: 90px;
+  position: relative;
+  top: 16px;
 }
 
 #mapContainer {
@@ -263,11 +283,13 @@ li:first-child {
   height:10px;
   margin-bottom:10px;
   margin-left:10px;
-  color:black;
+  color:powderblue;
 }
 
 nav .brand-logo {
   top:0;
+  color: white;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .showFavorites{
