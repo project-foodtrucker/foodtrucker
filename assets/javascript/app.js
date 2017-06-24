@@ -19,6 +19,8 @@ var truckStartTime;
 var truckEndTime;
 var currentIndex;
 
+var newEmail;
+var newPassword;
 // Initialize Firebase
 var config = {
     apiKey: "AIzaSyDAjERE4gqWGHZr6CaEubs9jmKWHj-pmTw",
@@ -308,3 +310,42 @@ $(".logOut").on("click", function(){
 });
 });
 });
+
+//create new account button
+
+$(".btnCreate").on("click", function(){
+
+  newEmail = $(".newEmail").val().trim();
+  newPassword = $(".newPassword").val().trim();
+  console.log(newEmail);
+  console.log(newPassword);
+  firebase.auth().createUserWithEmailAndPassword(newEmail, newPassword).catch(function(error) {
+  // Handle Errors here.
+
+  var errorCode = error.code;
+  var errorMessage = error.message;
+  // ...
+
+  });
+  
+  // ...
+});
+
+
+$(".btnLogin").on("click", function(){
+   newEmail = $(".newEmail").val().trim();
+  newPassword = $(".newPassword").val().trim();
+  login(newEmail, newPassword);
+});
+
+
+function login(newEmail, newPassword){
+ firebase.auth().signInWithEmailAndPassword(newEmail, newPassword).catch(function(error) {
+    console.log(error)
+  // Handle Errors here.
+  var errorCode = error.code;
+  var errorMessage = error.message;
+  // ...
+});
+
+}
