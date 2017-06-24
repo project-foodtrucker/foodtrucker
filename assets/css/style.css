@@ -97,6 +97,10 @@ margin-right: 200px;
   overflow: auto;
 }
 
+.nav-mobile {
+  margin-right: 10px;
+}
+
 .search-wrapper {
   width: 300px;
   /*position: relative;
@@ -136,12 +140,12 @@ right: 9px;
 
 #map {
   height: 400px;
-  width: 45%;
+  width: 48%;
   border-style: solid;
   border-color: teal;
   border-width: 3px;
   margin-top: 40px;
-  margin-left: 30px;
+  margin-left: 60px;
   padding: 5px;
   position: fixed !important;
  }
@@ -151,10 +155,11 @@ right: 9px;
  }*/
 
 #truckNav {
-  height: 100px;
-  border-radius: 15px;
+  height: 138px;
   line-height: 100px;
-  width: 95%;
+  width: 100%;
+  padding: 20px;
+  margin-top: 10px;
 }
 
 h1 {
@@ -174,11 +179,13 @@ h1 {
 
 #right {
   position: relative;
+  right: 61px;
   top: 40px;
   float: right;
-  margin-right: 25px;
+  width: 572px;
+  /* margin-right: 25px; */
   background-color: teal;
-  border-radius: 15px;
+  /* border-radius: 15px; */
 }
 
 #nav-mobile {
@@ -192,6 +199,10 @@ th {
 td {
   display: inline-block;
   margin: auto;
+}
+
+li {
+  margin-right: 10px;
 }
 
 #foodInput {
@@ -228,7 +239,7 @@ td {
 }
 
 .addNewLogin{
-  display: inline-block; 
+  display: inline-block;
   padding: 32px 48px 0px 48px;
   border: 1px solid #EEE;"
 }
@@ -238,5 +249,5 @@ td {
   position:absolute;
   top:30px;
   right:50px;
-  
+
 }
