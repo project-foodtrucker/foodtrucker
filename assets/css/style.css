@@ -113,6 +113,8 @@ margin-right: 200px;
   height: 46px;
   position: relative;
   top: 20px;
+  display:inline-block;
+  margin-top:30px;
 }
 
 #searchIcon {
@@ -155,7 +157,7 @@ right: 9px;
  }*/
 
 #truckNav {
-  height: 138px;
+  height: 150px;
   line-height: 100px;
   width: 100%;
   padding: 20px;
@@ -189,7 +191,7 @@ h1 {
 }
 
 #nav-mobile {
-  margin-top: 0px;
+  margin-top: 20px;
 }
 
 th {
@@ -201,9 +203,10 @@ td {
   margin: auto;
 }
 
-li {
-  margin-right: 10px;
+li:first-child {
+  margin-right: 140px;
 }
+
 
 #foodInput {
   width: 300px;
@@ -253,3 +256,20 @@ li {
 
 .favoriteTrucks{
   height:500px;
+}
+
+.loginInfo{
+  float:right;
+  height:10px;
+  margin-bottom:10px;
+  margin-left:10px;
+  color:black;
+}
+
+nav .brand-logo {
+  top:0;
+}
+
+.showFavorites{
+  margin-left:20px;
+}

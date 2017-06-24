@@ -176,6 +176,8 @@ function getCurrentUser() {
 $(document).ready(function() {
   // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
   $('.modal-trigger').leanModal();
+  $(".button-collapse").sideNav();
+
   //add truck to favorites event listener
   $(document).on("click", ".sendFavorite", function(){
     var currentUser = getCurrentUser();
@@ -222,7 +224,6 @@ renderFavorites();
   function renderFavorites(){
     //empties the content of modal so that we don't add duplicates on multiple clicks of button
     $(".modal-content").empty();
-    var openToday = 'maybe';
     //stores the keys pushed to firebase for each favorite truck
     var favoriteKeys = [];
     currentUser = getCurrentUser();
@@ -245,7 +246,6 @@ renderFavorites();
           tr.addClass('favorites');
           tr.append("<td>" + childData.name + "</td>");
           tr.append("<td>" + childData.cuisines+ "</td>");
-          tr.append("<td>" + openToday+ "</td>");
           tr.append("<td>" + childData.location + "</td>");
           tr.append(removeBox);
           $(".modal-content").append(tr);
