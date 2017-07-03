@@ -10,11 +10,17 @@ Why we are building: Because we love food and food trucks and want more accessib
 
 APIS: 
 Datasf  ( https://data.sfgov.org/Economy-and-Community/Mobile-Food-Schedule/jjew-r69b ) 
+
 Google maps (https://developers.google.com/maps/)
 
-Additional:
+Additional Tech:
+
 Moment Js - Show you the difference between time you are looking at it and when it closes
+
 Firebase - user authentication, saving favorite food trucks
+
 JavaScript 
+
 Jquery
+
 Materialize
