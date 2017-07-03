@@ -1,4 +1,5 @@
 Food Truck Discovery App
+
 Team Members:
 
 Carlos Lopez, Jarrod Costopulos, Jesse Stern
