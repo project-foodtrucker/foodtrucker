@@ -1,26 +1,24 @@
-### Food Truck Discovery App
+# SF Food Trucker
 
-### Team Members:
+App that will show you the location of nearby Food trucks in San Francisco that are currently open.
 
-Carlos Lopez, Jarrod Costopulos, Jesse Stern
+## Built With
 
-Web app that you can use to find ANY food truck within your area based on your geographical location 
+* JQuery
+* Materialize
+* Firebase
+* Moment.JS
 
-Why we are building: Because we love food and food trucks and want more accessibility to them!
+## APIS
 
-### APIS: 
-Datasf  ( https://data.sfgov.org/Economy-and-Community/Mobile-Food-Schedule/jjew-r69b ) 
+* DataSF - https://data.sfgov.org/Economy-and-Community/Mobile-Food-Schedule/jjew-r69b 
+* Google Maps - https://developers.google.com/maps/
+ 
 
-Google maps (https://developers.google.com/maps/)
+## Authors
 
-### Additional Tech:
+* **Jarrod Costopulos** 
+* **Jesse Stern** 
+* **Carlos Lopez** 
 
-Moment Js - Show you the difference between time you are looking at it and when it closes
 
-Firebase - user authentication, saving favorite food trucks
-
-JavaScript 
-
-Jquery
-
-Materialize
