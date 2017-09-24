@@ -4,7 +4,10 @@ App that will show you the location of nearby Food trucks in San Francisco that 
 
 ## Examples
 
+Food Truck View
 ![Foodtruckview](examples/foodtruckview.jpg)
+
+Saved Trucks View
 ![Savedview](examples/savedview.jpg)
 
 ## Built With
