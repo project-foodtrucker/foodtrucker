@@ -1,6 +1,6 @@
 # SF Food Trucker
 
-App that will show you the location of nearby Food trucks in San Francisco that are currently open.
+App that will show you the location of nearby Food trucks in San Francisco that are currently open.  This is an open source application available for use.  
 
 ## Examples
 
