@@ -1,6 +1,6 @@
 # SF Food Trucker
 
-App that will show you the location of nearby Food trucks in San Francisco that are currently open.  This is an open source application available for use.  
+A web based app that will show the location of Food trucks in San Francisco. The app searches a publically availble City of San Francisco data set which is referenced below (under ## APIS & DATA CONNECTION).  SF Food Trucker is an open source application available free of use.  
 
 ## Examples
 
@@ -17,7 +17,7 @@ App that will show you the location of nearby Food trucks in San Francisco that 
 * Firebase
 * Moment.JS
 
-## APIS
+## APIS & DATA CONNECTIONS
 
 * DataSF - https://data.sfgov.org/Economy-and-Community/Mobile-Food-Schedule/jjew-r69b 
 * Google Maps - https://developers.google.com/maps/
