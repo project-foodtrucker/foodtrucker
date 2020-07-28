@@ -22,7 +22,7 @@ A web based app that will show the location of Food trucks in San Francisco. The
 * DataSF - https://data.sfgov.org/Economy-and-Community/Mobile-Food-Schedule/jjew-r69b 
 * Google Maps - https://developers.google.com/maps/
 
-## Authors
+## Developers
 
 * **Jarrod Costopulos** 
 * **Jesse Stern** 
